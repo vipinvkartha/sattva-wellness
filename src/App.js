@@ -6,11 +6,11 @@ import './App.css';
 
 function App() {
   const sections = [
-    { id: 'home', title: 'Welcome to Sattva Wellness', content: 'Your journey to wellness begins here', image: 'yoga.jpg' },
-    { id: 'about', title: 'About Us', content: 'Sattva Wellness is a holistic wellness centre dedicated to nurturing your mind, body, and soul.', image: 'meditation.jpg' },
-    { id: 'services', title: 'Our Services', content: ['Yoga Classes', 'Meditation Sessions', 'Wellness Camps'], image: 'wellness.jpg' },
-    { id: 'store', title: 'Sattva Wellness Store', content: 'Discover our curated collection of wellness products to enhance your journey.', image: 'store.jpg' },
-    { id: 'contact', title: 'Contact Us', content: ['Email: info@sattvawellness.com', 'Phone: (123) 456-7890'], image: 'zen.jpg' },
+    { id: 'home', title: 'Welcome to Sattva Wellness', content: 'Your journey to wellness begins here', image: 'yoga.jpeg' },
+    { id: 'about', title: 'About Us', content: 'Sattva Wellness is a holistic wellness centre dedicated to nurturing your mind, body, and soul.', image: 'meditation.jpeg' },
+    { id: 'services', title: 'Our Services', content: ['Yoga Classes', 'Meditation Sessions', 'Wellness Camps'], image: 'wellness.jpeg' },
+    { id: 'store', title: 'Sattva Wellness Store', content: 'Discover our curated collection of wellness products to enhance your journey.', image: 'store.jpeg' },
+    { id: 'contact', title: 'Contact Us', content: ['Email: info@sattvawellness.com', 'Phone: (123) 456-7890'], image: 'zen.jpeg' },
   ];
 
   return (
