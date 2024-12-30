@@ -1,1 +1,0 @@
-import '../styles/globals.css'  // Adjust path as needed 

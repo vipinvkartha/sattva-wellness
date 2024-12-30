@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Heart, Leaf, Sun, Wind, ArrowRight, ShoppingBag } from "lucide-react";
+import { Heart, Leaf, Sun, Wind, ArrowRight } from "lucide-react";
 import { ReactNode } from "react";
 
 interface FeatureCardProps {
@@ -48,42 +48,6 @@ export default function Home() {
             <Button variant="outline" size="lg">
               Learn More
             </Button>
-            <Button 
-              variant="secondary" 
-              size="lg"
-              onClick={() => window.open('https://sattvawellness.store.link/', '_blank')}
-              className="bg-primary text-primary-foreground hover:bg-primary/90"
-            >
-              <ShoppingBag className="mr-2 h-4 w-4" />
-              Visit Store
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Add a Store Banner Section */}
-      <section className="bg-primary/5 py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-lg border bg-card p-8 shadow-sm">
-            <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-              <div>
-                <h2 className="text-2xl font-semibold tracking-tight">
-                  Explore Our Wellness Store
-                </h2>
-                <p className="mt-2 text-muted-foreground">
-                  Discover our curated collection of wellness products, including Rudraksha bracelets, 
-                  healing crystals, and meditation accessories.
-                </p>
-              </div>
-              <Button 
-                size="lg"
-                onClick={() => window.open('https://sattvawellness.store.link/', '_blank')}
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
-              >
-                <ShoppingBag className="mr-2 h-5 w-5" />
-                Shop Now
-              </Button>
-            </div>
           </div>
         </div>
       </section>

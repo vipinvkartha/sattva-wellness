@@ -1,1 +1,0 @@
-"use strict";(()=>{var r={};r.id=888,r.ids=[888],r.modules={9117:(r,s,e)=>{e.r(s),function(){var r=Error("Cannot find module '../styles/globals.css'");throw r.code="MODULE_NOT_FOUND",r}()}};var s=require("../webpack-runtime.js");s.C(r);var e=s(s.s=9117);module.exports=e})();
