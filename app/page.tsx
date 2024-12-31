@@ -14,22 +14,22 @@ interface FeatureCardProps {
 function FeatureCard({ icon, title, description }: FeatureCardProps) {
   return (
     <Card className="group relative flex flex-col items-center p-6 text-center transition-all duration-500 
-      hover:shadow-[0_0_40px_8px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_0_40px_8px_rgba(255,255,255,0.1)]
-      hover:scale-105 hover:bg-white/80 dark:hover:bg-slate-800/80 backdrop-blur-sm
+      hover:shadow-[0_0_40px_8px_rgba(20,184,166,0.1)] dark:hover:shadow-[0_0_40px_8px_rgba(20,184,166,0.05)]
+      hover:scale-105 hover:bg-white/90 dark:hover:bg-teal-950/90 backdrop-blur-sm
       before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-r before:from-transparent 
-      before:via-white/5 before:to-transparent before:opacity-0 before:transition-opacity
+      before:via-teal-500/5 before:to-transparent before:opacity-0 before:transition-opacity
       hover:before:opacity-100">
-      <div className="relative rounded-full bg-gradient-to-br from-slate-100 to-white dark:from-slate-800 dark:to-slate-700 
+      <div className="relative rounded-full bg-gradient-to-br from-teal-50 to-white dark:from-teal-900 dark:to-teal-800 
         p-4 shadow-inner transition-all duration-500 group-hover:shadow-lg group-hover:scale-110 
         group-hover:rotate-[360deg]">
         {icon}
       </div>
-      <h3 className="mt-4 text-xl font-semibold text-slate-800 dark:text-slate-200 transition-colors
-        group-hover:text-slate-900 dark:group-hover:text-white">
+      <h3 className="mt-4 text-xl font-semibold text-teal-900 dark:text-teal-100 transition-colors
+        group-hover:text-teal-800 dark:group-hover:text-white">
         {title}
       </h3>
-      <p className="mt-2 text-slate-600 dark:text-slate-400 transition-colors
-        group-hover:text-slate-700 dark:group-hover:text-slate-300">
+      <p className="mt-2 text-teal-700 dark:text-teal-300 transition-colors
+        group-hover:text-teal-600 dark:group-hover:text-teal-200">
         {description}
       </p>
     </Card>
@@ -38,27 +38,35 @@ function FeatureCard({ icon, title, description }: FeatureCardProps) {
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-      {/* Hero Section - Add a subtle pattern and glow */}
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-teal-50 via-emerald-50/50 to-teal-50 dark:from-teal-950 dark:via-emerald-950/50 dark:to-teal-950">
+      {/* Hero Section */}
       <section className="relative px-4 pt-20 pb-16 sm:px-6 lg:px-8 lg:pt-32 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,transparent,black)] 
-          dark:bg-grid-slate-700/25 animate-[grid_20s_linear_infinite]"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent 
-          animate-[shine_3s_ease-in-out_infinite] dark:via-slate-100/10"></div>
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-teal-100/20 via-transparent to-transparent dark:from-teal-800/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-teal-100/30 to-transparent 
+          animate-[shine_3s_ease-in-out_infinite] dark:via-teal-800/10"></div>
+        
         <div className="relative mx-auto max-w-7xl text-center">
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl animate-fade-in">
-            <span className="inline-block bg-gradient-to-r from-slate-800 via-slate-600 to-slate-800 
-              dark:from-slate-200 dark:via-slate-400 dark:to-slate-200 bg-clip-text text-transparent 
-              animate-title-slide-up opacity-0"
-            >
+            <span className="inline-block bg-gradient-to-r from-teal-700 via-emerald-600 to-teal-700 
+              dark:from-teal-300 dark:via-emerald-200 dark:to-teal-300 bg-clip-text text-transparent 
+              animate-title-slide-up opacity-0">
               Sattva
               <span className="block mt-1">Wellness</span>
             </span>
           </h1>
-          <h2 className="mt-4 text-2xl font-medium text-slate-600 dark:text-slate-300 sm:text-3xl">
+          <h2 className="mt-4 text-2xl font-medium sm:text-3xl
+            bg-clip-text text-transparent bg-gradient-to-r 
+            from-teal-800 via-emerald-700 to-teal-800
+            dark:from-teal-200 dark:via-emerald-100 dark:to-teal-200
+            drop-shadow-[0_2px_2px_rgba(0,0,0,0.1)]
+            dark:drop-shadow-[0_2px_2px_rgba(255,255,255,0.1)]
+            animate-fade-in"
+          >
             Transform Your Life with Mindful Wellness
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-500 dark:text-slate-400">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-teal-700/90 dark:text-teal-300/90
+            drop-shadow-sm">
             Discover a holistic approach to health and wellness. Our program combines mindfulness, 
             nutrition, and movement to help you achieve lasting balance and vitality.
           </p>
@@ -72,13 +80,12 @@ export default function Home() {
             href="https://sattvawellness.store.link/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="group inline-flex items-center text-lg font-medium relative
-              bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent
-              hover:from-purple-500 hover:to-pink-500
-              transition-all duration-300 hover:scale-105 
-              after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 
-              after:bg-gradient-to-r after:from-purple-600 after:to-pink-600
-              after:transition-all after:duration-300 hover:after:w-full"
+            className="group inline-flex items-center px-6 py-3 text-lg font-medium relative
+              text-white bg-gradient-to-r from-teal-500 to-emerald-500
+              hover:from-teal-400 hover:to-emerald-400
+              rounded-full shadow-lg hover:shadow-xl
+              transition-all duration-300 hover:scale-105
+              border border-teal-400/20 hover:border-teal-300/30"
           >
             Visit our store
             <svg
@@ -91,7 +98,7 @@ export default function Home() {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="ml-2 h-4 w-4 text-pink-600 transition-transform group-hover:translate-x-1"
+              className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"
             >
               <path d="M7 7h10v10" />
               <path d="M7 17 17 7" />
@@ -103,7 +110,7 @@ export default function Home() {
       {/* Features Section - Add card hover effects */}
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-slate-800 dark:text-slate-200 mb-12">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-teal-900 dark:text-teal-100 mb-12">
             What We Offer
           </h2>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -132,7 +139,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-slate-800 to-slate-900 dark:from-slate-900 dark:to-black py-16">
+      <section className="bg-gradient-to-br from-teal-900 to-slate-900 dark:from-slate-900 dark:to-black py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl bg-white/10 backdrop-blur-lg p-8 shadow-lg sm:p-12">
             <div className="text-center">
@@ -147,7 +154,7 @@ export default function Home() {
                 href="https://forms.zohopublic.eu/sattva/form/SattvaWellnessRegistrationForm/formperma/uESkDIJRLWFDFCpd6VWeBhSa5TEBQEBLsUVnG1JVayI"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-11 items-center justify-center rounded-md bg-white px-8 text-lg font-medium text-slate-900 transition-colors hover:bg-slate-100 mt-8"
+                className="inline-flex h-11 items-center justify-center rounded-md bg-teal-500 px-8 text-lg font-medium text-white transition-colors hover:bg-teal-600 mt-8"
               >
                 Schedule Your Free Consultation
               </a>
@@ -157,7 +164,7 @@ export default function Home() {
       </section>
 
       {/* Social Links & Contact */}
-      <footer className="bg-slate-900 text-white py-8 mt-auto">
+      <footer className="bg-teal-900 text-white py-8 mt-auto">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-center space-y-4 sm:space-y-6">
             {/* WhatsApp Contact */}
