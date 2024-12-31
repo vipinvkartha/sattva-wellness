@@ -33,7 +33,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative px-4 pt-20 pb-16 sm:px-6 lg:px-8 lg:pt-32">
         <div className="mx-auto max-w-7xl text-center">
-          <h1 className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-6xl">
+          <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-6xl">
             Sattva Wellness
           </h1>
           <h2 className="mt-4 text-2xl font-medium text-muted-foreground sm:text-3xl">
