@@ -36,6 +36,63 @@ function FeatureCard({ icon, title, description }: FeatureCardProps) {
   );
 }
 
+const testimonials = [
+  {
+    text: "The yoga classes at Sattva Wellness have completely transformed my approach to mindfulness. The instructors are incredibly knowledgeable and create a welcoming environment for all skill levels.",
+    name: "Priya Sharma",
+    designation: "Software Engineer at TCS",
+    location: "Kochi, Kerala",
+    image: "/testimonials/priya.jpg"
+  },
+  {
+    text: "I've attended several wellness camps, and each experience has been life-changing. The combination of meditation, yoga, and holistic health practices has helped me find balance in my busy life.",
+    name: "Rahul Menon",
+    designation: "Corporate Lawyer",
+    location: "Trivandrum",
+    image: "/testimonials/rahul.jpg"
+  },
+  {
+    text: "The meditation sessions have helped me manage stress and find inner peace. The instructors guide you with patience and understanding, making it perfect for beginners like me.",
+    name: "Anjali Nair",
+    designation: "Healthcare Professional",
+    location: "Calicut",
+    image: "/testimonials/anjali.jpg"
+  }
+];
+
+const galleryImages = [
+  {
+    url: "/gallery/camp1.jpg",
+    title: "Morning Yoga Session",
+    description: "Sunrise yoga at our beachside retreat"
+  },
+  {
+    url: "/gallery/camp2.jpg",
+    title: "Meditation Workshop",
+    description: "Group meditation in our peaceful garden"
+  },
+  {
+    url: "/gallery/camp3.jpg",
+    title: "Wellness Activities",
+    description: "Mindful movement and breathing exercises"
+  },
+  {
+    url: "/gallery/camp4.jpg",
+    title: "Nature Connection",
+    description: "Forest meditation and nature walks"
+  },
+  {
+    url: "/gallery/camp5.jpg",
+    title: "Group Sessions",
+    description: "Community healing and sharing circles"
+  },
+  {
+    url: "/gallery/camp6.jpg",
+    title: "Ayurvedic Cooking",
+    description: "Learning traditional wellness recipes"
+  }
+];
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-teal-50 via-emerald-50/50 to-teal-50 dark:from-teal-950 dark:via-emerald-950/50 dark:to-teal-950">
@@ -134,6 +191,125 @@ export default function Home() {
               title="Wellness Camps"
               description="Immersive retreats focused on rejuvenation and holistic transformation"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      <section className="py-16 bg-gradient-to-b from-transparent via-teal-50/50 to-transparent dark:via-teal-950/30">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-teal-900 dark:text-teal-100 mb-4">
+            Moments from Our Wellness Camps
+          </h2>
+          <p className="text-center text-teal-600 dark:text-teal-400 mb-12 max-w-2xl mx-auto">
+            Experience the transformative journey through our lens
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {galleryImages.map((image, index) => (
+              <div 
+                key={index}
+                className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800"
+              >
+                <img
+                  src={image.url}
+                  alt={image.title}
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                    <h3 className="text-lg font-semibold">{image.title}</h3>
+                    <p className="text-sm text-gray-200">{image.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* View More Button */}
+          <div className="text-center mt-12">
+            <button
+              onClick={() => window.open('https://www.instagram.com/sattva_wellness_?igsh=eXplaW01M3VxaXpn', '_blank')}
+              className="inline-flex items-center px-6 py-3 text-base font-medium text-white 
+                bg-gradient-to-r from-teal-500 to-emerald-500 
+                hover:from-teal-400 hover:to-emerald-400
+                rounded-full shadow-lg hover:shadow-xl
+                transition-all duration-300 hover:scale-105
+                border border-teal-400/20 hover:border-teal-300/30"
+            >
+              View More on Instagram
+              <svg
+                className="ml-2 h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-16 bg-gradient-to-b from-transparent via-teal-50/50 to-transparent dark:via-teal-950/30">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-teal-900 dark:text-teal-100 mb-4">
+            What Our Clients Say
+          </h2>
+          <p className="text-center text-teal-600 dark:text-teal-400 mb-12 max-w-2xl mx-auto">
+            Real experiences from our community members who have transformed their lives through our wellness programs
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div 
+                key={index}
+                className="relative bg-white dark:bg-teal-950/30 rounded-2xl p-6 shadow-md hover:shadow-xl
+                  transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm"
+              >
+                {/* Quote Icon */}
+                <div className="absolute -top-4 left-6 text-teal-500/10 dark:text-teal-400/10">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.956.76-3.022.66-1.065 1.515-1.867 2.558-2.403L9.373 5c-.8.396-1.56.898-2.26 1.505-.71.607-1.34 1.305-1.9 2.094s-.98 1.68-1.25 2.69-.346 2.04-.217 3.1c.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003zm9.124 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.074-.13-1.54-.022-.16-.94.09-1.95.75-3.02.66-1.06 1.514-1.86 2.557-2.4L18.49 5c-.8.396-1.555.898-2.26 1.505-.708.607-1.34 1.305-1.894 2.094-.556.79-.97 1.68-1.24 2.69-.273 1-.345 2.04-.217 3.1.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003z" />
+                  </svg>
+                </div>
+
+                <div className="space-y-4">
+                  {/* Testimonial Text */}
+                  <p className="text-teal-700 dark:text-teal-300 relative z-10">
+                    "{testimonial.text}"
+                  </p>
+                  
+                  {/* Author Info */}
+                  <div className="flex items-center space-x-3 pt-4 border-t border-teal-100 dark:border-teal-800">
+                    <div className="flex-shrink-0">
+                      <img
+                        className="h-10 w-10 rounded-full object-cover"
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                      />
+                    </div>
+                    <div>
+                      <div className="text-base font-medium text-teal-900 dark:text-teal-100">
+                        {testimonial.name}
+                      </div>
+                      <div className="text-sm text-teal-700 dark:text-teal-300 font-medium">
+                        {testimonial.designation}
+                      </div>
+                      <div className="text-sm text-teal-600 dark:text-teal-400">
+                        {testimonial.location}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
