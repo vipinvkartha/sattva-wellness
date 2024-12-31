@@ -141,9 +141,14 @@ export default function Home() {
                 Join our community of mindful individuals committed to living their best lives. 
                 Start your transformation with a free consultation.
               </p>
-              <Button size="lg" className="mt-8 bg-white text-slate-900 hover:bg-slate-100">
+              <a
+                href="https://forms.zohopublic.eu/sattva/form/SattvaWellnessRegistrationForm/formperma/uESkDIJRLWFDFCpd6VWeBhSa5TEBQEBLsUVnG1JVayI"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-11 items-center justify-center rounded-md bg-white px-8 text-lg font-medium text-slate-900 transition-colors hover:bg-slate-100 mt-8"
+              >
                 Schedule Your Free Consultation
-              </Button>
+              </a>
             </div>
           </div>
         </div>
