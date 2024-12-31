@@ -34,12 +34,44 @@ export default function Home() {
       <section className="relative px-4 pt-20 pb-16 sm:px-6 lg:px-8 lg:pt-32">
         <div className="mx-auto max-w-7xl text-center">
           <h1 className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-6xl">
-            Transform Your Life with Mindful Wellness
+            Sattva Wellness
           </h1>
+          <h2 className="mt-4 text-2xl font-medium text-muted-foreground sm:text-3xl">
+            Transform Your Life with Mindful Wellness
+          </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
             Discover a holistic approach to health and wellness. Our program combines mindfulness, 
             nutrition, and movement to help you achieve lasting balance and vitality.
           </p>
+        </div>
+      </section>
+
+      {/* Store Link Section */}
+      <section className="pb-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <a 
+            href="https://sattvawellness.store.link/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-lg font-medium text-primary hover:text-primary/80 transition-colors"
+          >
+            Visit our wellness store
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="ml-2 h-4 w-4"
+            >
+              <path d="M7 7h10v10" />
+              <path d="M7 17 17 7" />
+            </svg>
+          </a>
         </div>
       </section>
 
