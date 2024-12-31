@@ -49,8 +49,10 @@ export default function Home() {
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl animate-fade-in">
             <span className="inline-block bg-gradient-to-r from-slate-800 via-slate-600 to-slate-800 
               dark:from-slate-200 dark:via-slate-400 dark:to-slate-200 bg-clip-text text-transparent 
-              animate-gradient-x">
-              Sattva Wellness
+              animate-title-slide-up opacity-0"
+            >
+              Sattva
+              <span className="block mt-1">Wellness</span>
             </span>
           </h1>
           <h2 className="mt-4 text-2xl font-medium text-slate-600 dark:text-slate-300 sm:text-3xl">
