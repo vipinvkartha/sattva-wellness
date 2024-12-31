@@ -5,6 +5,14 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: { unoptimized: true },
+  webpack: (config, { dev, isServer }) => {
+    // Suppress the webpack cache warning in development
+    config.infrastructureLogging = {
+      level: 'error',
+    };
+    
+    return config;
+  },
 };
 
 module.exports = nextConfig;
