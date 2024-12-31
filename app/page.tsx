@@ -3,7 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Heart, Leaf, PersonStanding, Sun, TentTree, Wind } from "lucide-react";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
+import { ImageModal } from './components/ImageModal';
 
 interface FeatureCardProps {
   icon: ReactNode;
@@ -94,6 +95,20 @@ const galleryImages = [
 ];
 
 export default function Home() {
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+
+  const handlePreviousImage = () => {
+    if (selectedImageIndex !== null && selectedImageIndex > 0) {
+      setSelectedImageIndex(selectedImageIndex - 1);
+    }
+  };
+
+  const handleNextImage = () => {
+    if (selectedImageIndex !== null && selectedImageIndex < galleryImages.length - 1) {
+      setSelectedImageIndex(selectedImageIndex + 1);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-teal-50 via-emerald-50/50 to-teal-50 dark:from-teal-950 dark:via-emerald-950/50 dark:to-teal-950">
       {/* Hero Section */}
@@ -209,7 +224,8 @@ export default function Home() {
             {galleryImages.map((image, index) => (
               <div 
                 key={index}
-                className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800"
+                className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800 cursor-pointer"
+                onClick={() => setSelectedImageIndex(index)}
               >
                 <img
                   src={image.url}
@@ -225,6 +241,19 @@ export default function Home() {
               </div>
             ))}
           </div>
+
+          {/* Image Modal */}
+          {selectedImageIndex !== null && (
+            <ImageModal
+              image={galleryImages[selectedImageIndex]}
+              isOpen={selectedImageIndex !== null}
+              onClose={() => setSelectedImageIndex(null)}
+              onNext={handleNextImage}
+              onPrevious={handlePreviousImage}
+              hasNext={selectedImageIndex < galleryImages.length - 1}
+              hasPrevious={selectedImageIndex > 0}
+            />
+          )}
 
           {/* View More Button */}
           <div className="text-center mt-12">
