@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Heart, Leaf, PersonStanding, Sun, TentTree, Wind } from "lucide-react";
 import { ReactNode, useState } from "react";
 import { ImageModal } from './components/ImageModal';
+import { NavMenu } from './components/NavMenu';
 
 interface FeatureCardProps {
   icon: ReactNode;
@@ -111,8 +112,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-teal-50 via-emerald-50/50 to-teal-50 dark:from-teal-950 dark:via-emerald-950/50 dark:to-teal-950">
+      <NavMenu />
+      
       {/* Hero Section */}
-      <section className="relative px-4 pt-20 pb-16 sm:px-6 lg:px-8 lg:pt-32 overflow-hidden">
+      <section id="home" className="relative px-4 pt-28 pb-16 sm:px-6 lg:px-8 lg:pt-40 overflow-hidden">
         {/* Subtle pattern overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-teal-100/20 via-transparent to-transparent dark:from-teal-800/10"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-teal-100/30 to-transparent 
@@ -180,7 +183,7 @@ export default function Home() {
       </section>
 
       {/* Features Section - Add card hover effects */}
-      <section className="py-16 sm:py-24">
+      <section id="features" className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-center text-3xl font-bold tracking-tight text-teal-900 dark:text-teal-100 mb-12">
             What We Offer
@@ -211,7 +214,7 @@ export default function Home() {
       </section>
 
       {/* Gallery Section */}
-      <section className="py-16 bg-gradient-to-b from-transparent via-teal-50/50 to-transparent dark:via-teal-950/30">
+      <section id="gallery" className="py-16 bg-gradient-to-b from-transparent via-teal-50/50 to-transparent dark:via-teal-950/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-center text-3xl font-bold tracking-tight text-teal-900 dark:text-teal-100 mb-4">
             Moments from Our Wellness Camps
@@ -286,7 +289,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 bg-gradient-to-b from-transparent via-teal-50/50 to-transparent dark:via-teal-950/30">
+      <section id="testimonials" className="py-16 bg-gradient-to-b from-transparent via-teal-50/50 to-transparent dark:via-teal-950/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-center text-3xl font-bold tracking-tight text-teal-900 dark:text-teal-100 mb-4">
             What Our Clients Say
@@ -344,7 +347,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-teal-900 to-slate-900 dark:from-slate-900 dark:to-black py-16">
+      <section id="contact" className="bg-gradient-to-br from-teal-900 to-slate-900 dark:from-slate-900 dark:to-black py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl bg-white/10 backdrop-blur-lg p-8 shadow-lg sm:p-12">
             <div className="text-center">
