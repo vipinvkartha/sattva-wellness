@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Heart, Leaf, Sun, Wind, ArrowRight } from "lucide-react";
+import { Heart, Leaf, Sun, Wind } from "lucide-react";
 import { ReactNode } from "react";
 
 interface FeatureCardProps {
@@ -40,21 +40,15 @@ export default function Home() {
             Discover a holistic approach to health and wellness. Our program combines mindfulness, 
             nutrition, and movement to help you achieve lasting balance and vitality.
           </p>
-          <div className="mt-10 flex justify-center gap-4">
-            <Button size="lg">
-              Start Your Journey
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Button variant="outline" size="lg">
-              Learn More
-            </Button>
-          </div>
         </div>
       </section>
 
       {/* Features Section */}
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-card-foreground mb-12">
+            What We Offer
+          </h2>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <FeatureCard
               icon={<Heart className="h-10 w-10 text-primary" />}
@@ -63,18 +57,18 @@ export default function Home() {
             />
             <FeatureCard
               icon={<Leaf className="h-10 w-10 text-primary" />}
-              title="Mindful Living"
-              description="Learn techniques for stress reduction and present-moment awareness"
+              title="Yoga Classes"
+              description="Expert-led sessions combining physical postures, breathing techniques, and relaxation"
             />
             <FeatureCard
               icon={<Sun className="h-10 w-10 text-primary" />}
-              title="Natural Balance"
-              description="Align your lifestyle with natural rhythms and sustainable practices"
+              title="Meditation Sessions"
+              description="Guided practices to cultivate mindfulness and inner calm in daily life"
             />
             <FeatureCard
               icon={<Wind className="h-10 w-10 text-primary" />}
-              title="Inner Peace"
-              description="Develop lasting tools for emotional resilience and clarity"
+              title="Wellness Camps"
+              description="Immersive retreats focused on rejuvenation and holistic transformation"
             />
           </div>
         </div>
