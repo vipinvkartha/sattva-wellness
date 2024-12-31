@@ -78,7 +78,7 @@ export default function Home() {
               after:bg-gradient-to-r after:from-purple-600 after:to-pink-600
               after:transition-all after:duration-300 hover:after:w-full"
           >
-            Visit our wellness store
+            Visit our store
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
