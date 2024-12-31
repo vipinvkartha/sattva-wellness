@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Heart, Leaf, Sun, Wind } from "lucide-react";
+import { Heart, Leaf, PersonStanding, Sun, TentTree, Wind } from "lucide-react";
 import { ReactNode } from "react";
 
 interface FeatureCardProps {
@@ -111,7 +111,7 @@ export default function Home() {
               description="Comprehensive approach to physical, mental, and emotional well-being"
             />
             <FeatureCard
-              icon={<Leaf className="h-10 w-10 text-primary" />}
+              icon={<PersonStanding className="h-10 w-10 text-primary" />}
               title="Yoga Classes"
               description="Expert-led sessions combining physical postures, breathing techniques, and relaxation"
             />
@@ -121,7 +121,7 @@ export default function Home() {
               description="Guided practices to cultivate mindfulness and inner calm in daily life"
             />
             <FeatureCard
-              icon={<Wind className="h-10 w-10 text-primary" />}
+              icon={<TentTree className="h-10 w-10 text-primary" />}
               title="Wellness Camps"
               description="Immersive retreats focused on rejuvenation and holistic transformation"
             />
