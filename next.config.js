@@ -4,7 +4,10 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  images: { unoptimized: true },
+  images: {
+    unoptimized: true,
+    remotePatterns: [],
+  },
   webpack: (config, { dev, isServer }) => {
     // Suppress the webpack cache warning in development
     config.infrastructureLogging = {

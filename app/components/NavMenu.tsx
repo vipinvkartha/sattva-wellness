@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Logo } from './Logo';
 
 const menuItems = [
   { label: 'Home', href: '#home' },
@@ -67,9 +68,16 @@ export function NavMenu() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Desktop Menu */}
           <div className="flex h-16 items-center justify-between">
-            <div className="text-xl font-semibold text-teal-700 dark:text-teal-300">
-              Sattva
-            </div>
+            <a 
+              href="#home" 
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('#home');
+              }}
+              className="hover:opacity-80 transition-opacity"
+            >
+              <Logo />
+            </a>
             
             {/* Mobile menu button */}
             <button
