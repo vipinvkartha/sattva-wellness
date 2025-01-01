@@ -2,16 +2,20 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
+import { useRouter, usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 const menuItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'What We Offer', href: '#features' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Testimonials', href: '#testimonials' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/', isSection: false },
+  { label: 'What We Offer', href: '#features', isSection: true },
+  { label: 'Gallery', href: '#gallery', isSection: true },
+  { label: 'Testimonials', href: '#testimonials', isSection: true },
+  { label: 'Contact', href: '#contact', isSection: true },
 ];
 
-export function NavMenu() {
+function NavMenu() {
+  const router = useRouter();
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -20,23 +24,24 @@ export function NavMenu() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      // Update active section based on scroll position
-      const sections = menuItems.map(item => item.href.substring(1));
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
+      if (pathname === '/') {
+        // Only track sections on home page
+        const sections = menuItems.filter(item => item.isSection).map(item => item.href.substring(1));
+        const currentSection = sections.find(section => {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            return rect.top <= 100 && rect.bottom >= 100;
+          }
+          return false;
+        });
 
-      if (currentSection) {
-        setActiveSection(currentSection);
+        if (currentSection) {
+          setActiveSection(currentSection);
+        }
       }
     };
 
-    // Prevent scrolling when mobile menu is open
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -48,14 +53,22 @@ export function NavMenu() {
       window.removeEventListener('scroll', handleScroll);
       document.body.style.overflow = 'unset';
     };
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, pathname]);
 
-  const scrollToSection = (href: string) => {
-    const element = document.getElementById(href.substring(1));
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
+  const handleNavigation = (item: typeof menuItems[0]) => {
+    if (pathname !== '/' && !item.isSection) {
+      router.push(item.href);
+    } else if (pathname !== '/' && item.isSection) {
+      router.push(`/${item.href}`);
+    } else if (item.isSection) {
+      const element = document.getElementById(item.href.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      router.push(item.href);
     }
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -66,20 +79,14 @@ export function NavMenu() {
           : 'bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm'
       }`}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Desktop Menu */}
           <div className="flex h-16 items-center justify-between">
-            <a 
-              href="#home" 
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('#home');
-              }}
+            <Link 
+              href="/"
               className="hover:opacity-80 transition-opacity"
             >
               <Logo />
-            </a>
+            </Link>
             
-            {/* Mobile menu button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="lg:hidden p-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
@@ -92,21 +99,20 @@ export function NavMenu() {
               )}
             </button>
 
-            {/* Desktop navigation */}
             <div className="hidden lg:flex items-center justify-center gap-8">
               {menuItems.map((item) => (
                 <button
                   key={item.href}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleNavigation(item)}
                   className={`relative px-3 py-2 text-sm font-medium transition-colors
-                    ${activeSection === item.href.substring(1)
+                    ${activeSection === item.href.substring(1) && item.isSection && pathname === '/'
                       ? 'text-teal-600 dark:text-teal-400 font-semibold'
                       : 'text-gray-800 hover:text-teal-600 dark:text-gray-100 dark:hover:text-teal-400'
                     }
                     after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-center
                     after:scale-x-0 after:bg-teal-600 dark:after:bg-teal-400 after:transition-transform
                     after:duration-300 hover:after:scale-x-100
-                    ${activeSection === item.href.substring(1) ? 'after:scale-x-100' : ''}
+                    ${activeSection === item.href.substring(1) && item.isSection && pathname === '/' ? 'after:scale-x-100' : ''}
                   `}
                 >
                   {item.label}
@@ -117,16 +123,15 @@ export function NavMenu() {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 z-[99] bg-white dark:bg-gray-900 pt-16">
           <div className="p-4 space-y-2">
             {menuItems.map((item) => (
               <button
                 key={item.href}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => handleNavigation(item)}
                 className={`block w-full px-4 py-3 text-left text-base font-medium rounded-md transition-colors
-                  ${activeSection === item.href.substring(1)
+                  ${activeSection === item.href.substring(1) && item.isSection && pathname === '/'
                     ? 'bg-teal-50 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 font-semibold'
                     : 'text-gray-800 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800/50'
                   }
@@ -140,4 +145,6 @@ export function NavMenu() {
       )}
     </>
   );
-} 
+}
+
+export default NavMenu; 
