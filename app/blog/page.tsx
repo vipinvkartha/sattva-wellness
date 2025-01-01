@@ -1,10 +1,10 @@
 import NavMenu from '../components/NavMenu';
 import { getBlogPosts } from '../lib/contentful';
 import Link from 'next/link';
-import { BlogPost } from '../data/blogPosts';
+import type { BlogPost } from '../data/blogPosts';
 
 export default async function Blog() {
-  const posts = await getBlogPosts();
+  const posts: BlogPost[] = await getBlogPosts();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-50 via-emerald-50/50 to-teal-50 dark:from-teal-950 dark:via-emerald-950/50 dark:to-teal-950">
