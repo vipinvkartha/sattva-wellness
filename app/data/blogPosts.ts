@@ -2,10 +2,11 @@ export interface BlogPost {
   id: string;
   title: string;
   excerpt: string;
-  content: string;
-  category: 'yoga' | 'meditation' | 'wellness' | 'lifestyle';
+  content: any;
+  category: string;
   image: string;
   date: string;
+  slug: string;
 }
 
 export const blogPosts: BlogPost[] = [

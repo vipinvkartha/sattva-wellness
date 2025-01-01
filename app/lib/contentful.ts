@@ -1,4 +1,5 @@
 import { createClient } from 'contentful';
+import type { BlogPost } from '../data/blogPosts';
 
 if (!process.env.CONTENTFUL_SPACE_ID) {
   throw new Error('CONTENTFUL_SPACE_ID is not defined');
@@ -14,7 +15,7 @@ const client = createClient({
   host: 'cdn.contentful.com',
 });
 
-export async function getBlogPosts() {
+export async function getBlogPosts(): Promise<BlogPost[]> {
   try {
     const response = await client.getEntries({
       content_type: 'pageBlogPost',
@@ -30,7 +31,7 @@ export async function getBlogPosts() {
 
         return hasRequiredFields;
       })
-      .map((item: any) => {
+      .map((item: any): BlogPost => {
         const excerpt = item.fields.shortDescription || 
           (typeof item.fields.content === 'string' 
             ? item.fields.content.slice(0, 150) + '...'
@@ -46,7 +47,7 @@ export async function getBlogPosts() {
             ? `https:${item.fields.featuredImage.fields.file.url}`
             : '/gallery/camp1.jpg',
           date: item.fields.publishedDate || item.sys.createdAt,
-          slug: item.fields.slug,
+          slug: item.fields.slug || '',
         };
       });
   } catch (error) {
@@ -55,7 +56,7 @@ export async function getBlogPosts() {
   }
 }
 
-export async function getBlogPost(id: string) {
+export async function getBlogPost(id: string): Promise<BlogPost | null> {
   try {
     const entry = await client.getEntry(id);
 
@@ -66,14 +67,14 @@ export async function getBlogPost(id: string) {
     return {
       id: entry.sys.id,
       title: entry.fields.title,
-      excerpt: entry.fields.shortDescription,
+      excerpt: entry.fields.shortDescription || '',
       content: entry.fields.content,
       category: 'wellness',
       image: entry.fields.featuredImage?.fields?.file?.url 
         ? `https:${entry.fields.featuredImage.fields.file.url}`
         : '/gallery/camp1.jpg',
       date: entry.fields.publishedDate || entry.sys.createdAt,
-      slug: entry.fields.slug,
+      slug: entry.fields.slug || '',
     };
   } catch (error) {
     console.error('Error fetching blog post:', error);
