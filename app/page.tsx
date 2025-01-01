@@ -371,42 +371,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Blog Section - Add before footer */}
-      <section className="py-16 bg-gradient-to-b from-transparent via-teal-50/50 to-transparent dark:via-teal-950/30">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-teal-900 dark:text-teal-100 mb-4">
-            Explore Our Blog
-          </h2>
-          <p className="text-teal-600 dark:text-teal-400 mb-8 max-w-2xl mx-auto">
-            Discover insights about yoga, meditation, and holistic wellness practices
-          </p>
-          <a
-            href="/blog"
-            className="inline-flex items-center px-6 py-3 text-lg font-medium text-white 
-              bg-gradient-to-r from-teal-500 to-emerald-500 
-              hover:from-teal-400 hover:to-emerald-400
-              rounded-full shadow-lg hover:shadow-xl
-              transition-all duration-300 hover:scale-105
-              border border-teal-400/20 hover:border-teal-300/30"
-          >
-            Read Our Blog
-            <svg
-              className="ml-2 h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
-              />
-            </svg>
-          </a>
-        </div>
-      </section>
-
       {/* Social Links & Contact */}
       <footer className="bg-teal-900 text-white py-8 mt-auto">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
