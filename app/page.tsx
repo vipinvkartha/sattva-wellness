@@ -6,6 +6,7 @@ import { Heart, Leaf, PersonStanding, Sun, TentTree, Wind } from "lucide-react";
 import { ReactNode, useState } from "react";
 import { ImageModal } from './components/ImageModal';
 import NavMenu from './components/NavMenu';
+import QuoteDisplay from '../src/components/QuoteDisplay'
 
 interface FeatureCardProps {
   icon: ReactNode;
@@ -147,6 +148,11 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      {/* Add QuoteDisplay here, after the hero section */}
+      <div className="mb-16">
+        <QuoteDisplay />
+      </div>
 
       {/* Store Link - Add hover effect */}
       <section className="pb-8">
