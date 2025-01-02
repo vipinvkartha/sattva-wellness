@@ -128,11 +128,14 @@ export default function Home() {
             <span className="inline-block bg-gradient-to-r from-teal-700 via-emerald-600 to-teal-700 
               dark:from-teal-300 dark:via-emerald-200 dark:to-teal-300 bg-clip-text text-transparent 
               animate-title-slide-up opacity-0">
-              Sattva
-              <span className="block mt-1">Wellness</span>
+              Sattva Wellness
             </span>
           </h1>
-          <h2 className="mt-4 text-2xl font-medium sm:text-3xl
+          <p className="mt-2 text-lg italic text-teal-600/80 dark:text-teal-400/80 
+            animate-fade-in font-medium">
+            Healthy Body, Happy Soul
+          </p>
+          <h2 className="mt-6 text-xl font-medium sm:text-2xl
             bg-clip-text text-transparent bg-gradient-to-r 
             from-teal-800 via-emerald-700 to-teal-800
             dark:from-teal-200 dark:via-emerald-100 dark:to-teal-200
