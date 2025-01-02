@@ -30,6 +30,13 @@ function NavMenu() {
           .filter(item => item.isSection)
           .map(item => item.href.substring(1));
 
+        type Section = {
+          id: string;
+          top: number;
+          bottom: number;
+          height: number;
+        };
+
         // Find all visible sections
         const visibleSections = sections
           .map(section => {
@@ -45,10 +52,10 @@ function NavMenu() {
             }
             return null;
           })
-          .filter(Boolean);
+          .filter((section): section is Section => section !== null);
 
         // Find the most visible section
-        const mostVisible = visibleSections.reduce((prev, current) => {
+        const mostVisible = visibleSections.reduce<Section | null>((prev, current) => {
           const viewportHeight = window.innerHeight;
           const currentVisibleHeight = Math.min(current.bottom, viewportHeight) - 
             Math.max(current.top, 0);
@@ -56,7 +63,7 @@ function NavMenu() {
             Math.min(prev.bottom, viewportHeight) - Math.max(prev.top, 0) : 0;
 
           return currentVisibleHeight > prevVisibleHeight ? current : prev;
-        }, null);
+        }, visibleSections[0] || null);
 
         if (mostVisible) {
           setActiveSection(mostVisible.id);
