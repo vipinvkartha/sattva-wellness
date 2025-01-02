@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import Script from 'next/script';
 import FloatingConsultButton from '@/components/FloatingConsultButton';
+import CampaignBanner from '@/components/CampaignBanner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -100,8 +101,9 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={inter.className}>
-        <FloatingConsultButton />
+        <CampaignBanner />
         {children}
+        <FloatingConsultButton />
         <Analytics />
       </body>
     </html>

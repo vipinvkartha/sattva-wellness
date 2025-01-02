@@ -7,6 +7,7 @@ import { ReactNode, useState } from "react";
 import { ImageModal } from './components/ImageModal';
 import NavMenu from './components/NavMenu';
 import QuoteDisplay from '../src/components/QuoteDisplay'
+import PricingSection from '@/components/PricingSection';
 
 interface FeatureCardProps {
   icon: ReactNode;
@@ -218,6 +219,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <PricingSection />
 
       {/* Gallery Section */}
       <section id="gallery" className="py-16 bg-gradient-to-b from-transparent via-teal-50/50 to-transparent dark:via-teal-950/30">

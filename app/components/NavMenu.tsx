@@ -8,6 +8,7 @@ import Link from 'next/link';
 const menuItems = [
   { label: 'Home', href: '/', isSection: false },
   { label: 'What We Offer', href: '#features', isSection: true },
+  { label: 'Our Packages', href: '#pricing', isSection: true },
   { label: 'Gallery', href: '#gallery', isSection: true },
   { label: 'Testimonials', href: '#testimonials', isSection: true },
   { label: 'Contact', href: '#contact', isSection: true },
@@ -25,19 +26,42 @@ function NavMenu() {
       setIsScrolled(window.scrollY > 50);
 
       if (pathname === '/') {
-        // Only track sections on home page
-        const sections = menuItems.filter(item => item.isSection).map(item => item.href.substring(1));
-        const currentSection = sections.find(section => {
-          const element = document.getElementById(section);
-          if (element) {
-            const rect = element.getBoundingClientRect();
-            return rect.top <= 100 && rect.bottom >= 100;
-          }
-          return false;
-        });
+        const sections = menuItems
+          .filter(item => item.isSection)
+          .map(item => item.href.substring(1));
 
-        if (currentSection) {
-          setActiveSection(currentSection);
+        // Find all visible sections
+        const visibleSections = sections
+          .map(section => {
+            const element = document.getElementById(section);
+            if (element) {
+              const rect = element.getBoundingClientRect();
+              return {
+                id: section,
+                top: rect.top,
+                bottom: rect.bottom,
+                height: rect.height
+              };
+            }
+            return null;
+          })
+          .filter(Boolean);
+
+        // Find the most visible section
+        const mostVisible = visibleSections.reduce((prev, current) => {
+          const viewportHeight = window.innerHeight;
+          const currentVisibleHeight = Math.min(current.bottom, viewportHeight) - 
+            Math.max(current.top, 0);
+          const prevVisibleHeight = prev ? 
+            Math.min(prev.bottom, viewportHeight) - Math.max(prev.top, 0) : 0;
+
+          return currentVisibleHeight > prevVisibleHeight ? current : prev;
+        }, null);
+
+        if (mostVisible) {
+          setActiveSection(mostVisible.id);
+        } else if (window.scrollY < 100) {
+          setActiveSection('home');
         }
       }
     };
