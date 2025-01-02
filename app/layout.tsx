@@ -7,7 +7,7 @@ import Script from 'next/script';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://sattvawellness.vercel.app'),
+  metadataBase: new URL('https://sattva-wellness.in/'),
   title: 'Sattva Wellness | Holistic Health & Mindful Living',
   description: 'Transform your life with Sattva Wellness. Expert-led yoga classes, meditation sessions, and wellness camps. Join our holistic approach to health and mindful living in Kerala.',
   keywords: 'Sattva Wellness, yoga classes, meditation, wellness camps, holistic health, mindfulness, Kerala wellness, mindful living, wellness program',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Sattva Wellness | Holistic Health & Mindful Living',
     description: 'Transform your life with Sattva Wellness. Expert-led yoga classes, meditation sessions, and wellness camps in Kerala.',
-    url: 'https://sattvawellness.vercel.app',
+    url: 'https://sattva-wellness.in/',
     siteName: 'Sattva Wellness',
     images: [
       {
@@ -67,7 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="canonical" href="https://sattvawellness.vercel.app" />
+        <link rel="canonical" href="https://sattva-wellness.in/" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <Script

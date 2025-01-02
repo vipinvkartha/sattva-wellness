@@ -3,29 +3,29 @@ import { useState, useEffect } from 'react';
 
 const QuoteDisplay = () => {
   const [currentQuote, setCurrentQuote] = useState(quotes[0]);
-  const [nextQuote, setNextQuote] = useState(quotes[1]);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const getNextQuote = (currentQuote) => {
-    const currentIndex = quotes.indexOf(currentQuote);
-    const nextIndex = (currentIndex + 1) % quotes.length;
-    return quotes[nextIndex];
+  const getRandomQuote = (currentQuote) => {
+    let randomQuote;
+    do {
+      randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    } while (randomQuote === currentQuote);
+    return randomQuote;
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIsTransitioning(true);
-      
+
       setTimeout(() => {
-        setCurrentQuote(nextQuote);
-        setNextQuote(getNextQuote(nextQuote));
+        setCurrentQuote(getRandomQuote(currentQuote));
         setIsTransitioning(false);
       }, 500);
-      
+
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [nextQuote]);
+  }, [currentQuote]);
 
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8">
@@ -49,4 +49,4 @@ const QuoteDisplay = () => {
   );
 };
 
-export default QuoteDisplay; 
+export default QuoteDisplay;

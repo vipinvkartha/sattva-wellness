@@ -449,7 +449,7 @@ export default function Home() {
                 © {new Date().getFullYear()} Sattva Wellness. All rights reserved.
               </p>
               <p className="text-xs text-teal-400/60 mt-1">
-                Nurturing mind, body, and soul through holistic wellness practices.
+                Healthy Body, Happy Soul
               </p>
             </div>
           </div>
