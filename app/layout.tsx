@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import Script from 'next/script';
-import FloatingConsultButton from '@/components/FloatingConsultButton';
 import CampaignBanner from '@/components/CampaignBanner';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -72,6 +71,16 @@ export default function RootLayout({
         <link rel="canonical" href="https://sattva-wellness.in/" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        
+        {/* WhatsForm Widget */}
+        <Script
+          id="wf-widget"
+          src="https://whatsform.com/launcher.js"
+          data-id="wPZ4nX"
+          data-message=""
+          strategy="lazyOnload"
+        />
+
         <Script
           id="collect-chat"
           strategy="afterInteractive"
@@ -103,7 +112,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <CampaignBanner />
         {children}
-        <FloatingConsultButton />
         <Analytics />
       </body>
     </html>

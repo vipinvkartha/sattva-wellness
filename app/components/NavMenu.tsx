@@ -149,6 +149,16 @@ function NavMenu() {
                   {item.label}
                 </button>
               ))}
+
+              <a
+                href="https://forms.zohopublic.eu/sattva/form/SattvaWellnessRegistrationForm/formperma/uESkDIJRLWFDFCpd6VWeBhSa5TEBQEBLsUVnG1JVayI"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 text-sm font-medium text-white 
+                  bg-teal-500 hover:bg-teal-600 rounded-full transition-colors duration-200"
+              >
+                Register
+              </a>
             </div>
           </div>
         </div>
@@ -171,6 +181,16 @@ function NavMenu() {
                 {item.label}
               </button>
             ))}
+            
+            <a
+              href="https://forms.zohopublic.eu/sattva/form/SattvaWellnessRegistrationForm/formperma/uESkDIJRLWFDFCpd6VWeBhSa5TEBQEBLsUVnG1JVayI"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full px-4 py-3 mt-4 text-center text-white font-medium 
+                bg-teal-500 hover:bg-teal-600 rounded-md transition-colors duration-200"
+            >
+              Register
+            </a>
           </div>
         </div>
       )}
