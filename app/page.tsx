@@ -6,7 +6,7 @@ import { Heart, Leaf, PersonStanding, Sun, TentTree, Wind } from "lucide-react";
 import { ReactNode, useState } from "react";
 import { ImageModal } from './components/ImageModal';
 import NavMenu from './components/NavMenu';
-import QuoteDisplay from '../src/components/QuoteDisplay'
+import QuoteDisplay from '@/components/QuoteDisplay';
 import PricingSection from '@/components/PricingSection';
 import StoreSection from '@/components/StoreSection';
 

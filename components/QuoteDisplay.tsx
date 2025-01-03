@@ -1,11 +1,11 @@
-import { quotes } from '../data/quotes';
+import { quotes } from './data/quotes';
 import { useState, useEffect } from 'react';
 
 const QuoteDisplay = () => {
   const [currentQuote, setCurrentQuote] = useState(quotes[0]);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const getRandomQuote = (currentQuote) => {
+  const getRandomQuote = (currentQuote: any) => {
     let randomQuote;
     do {
       randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
