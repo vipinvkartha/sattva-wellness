@@ -34,7 +34,7 @@ export default function StoreSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="relative text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl
-            animate-fade-in-up group cursor-default"
+            group cursor-default"
           >
             <span className="relative">
               Wellness Store
@@ -44,15 +44,11 @@ export default function StoreSection() {
               ></span>
             </span>
           </h2>
-          <p className="mt-4 text-xl text-gray-600 dark:text-gray-300
-            animate-fade-in-up [animation-delay:200ms]"
-          >
+          <p className="mt-4 text-xl text-gray-600 dark:text-gray-300">
             Discover our collection of mindfully curated wellness products
           </p>
           
-          <div className="mt-8 relative overflow-hidden
-            animate-fade-in-up [animation-delay:400ms] group/box"
-          >
+          <div className="mt-8 relative overflow-hidden group/box">
             <div className="absolute -inset-1 bg-gradient-to-r from-teal-500 via-emerald-500 to-teal-500 
               rounded-2xl opacity-30 group-hover/box:opacity-50 blur-sm
               animate-[spin_4s_linear_infinite] transition-opacity duration-500"
@@ -75,9 +71,7 @@ export default function StoreSection() {
               hover:shadow-2xl hover:border-teal-300 dark:hover:border-teal-700
               transition-all duration-500"
             >
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4
-                animate-fade-in-up [animation-delay:600ms] group/title"
-              >
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 group/title">
                 <span className="inline-block animate-[bounce_2s_ease-in-out_infinite]">🌟</span>
                 <span className="relative">
                   Exclusive Collection
@@ -86,22 +80,18 @@ export default function StoreSection() {
                   ></span>
                 </span>
               </h3>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6
-                animate-fade-in-up [animation-delay:800ms]"
-              >
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
                 Transform your spiritual journey with our handpicked selection of sacred jewelry and wellness accessories
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                {categories.map((category, index) => (
+                {categories.map((category) => (
                   <div 
                     key={category.title}
                     onClick={() => handleCategoryClick(category.link)}
                     className="group p-4 bg-white/90 dark:bg-gray-900/90 rounded-lg shadow-md
                       transform hover:scale-105 hover:shadow-xl hover:-translate-y-2
-                      transition-all duration-300 ease-out
-                      animate-fade-in-up cursor-pointer"
-                    style={{ animationDelay: `${1000 + index * 200}ms` }}
+                      transition-all duration-300 ease-out cursor-pointer"
                   >
                     <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden
                       shadow-md group-hover:shadow-xl transition-shadow duration-300"
@@ -114,7 +104,6 @@ export default function StoreSection() {
                           group-hover:brightness-110"
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
-                      {/* Enhanced overlay with zoom effect */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent 
                         opacity-0 group-hover:opacity-100 transition-all duration-300
                         flex items-end justify-center pb-4"
@@ -126,7 +115,6 @@ export default function StoreSection() {
                           View Collection →
                         </span>
                       </div>
-                      {/* Add shine effect */}
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div className="absolute inset-0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000
                           bg-gradient-to-r from-transparent via-white/20 to-transparent"
@@ -157,9 +145,7 @@ export default function StoreSection() {
                   className="relative mt-4 px-6 py-3 text-base font-medium text-white overflow-hidden
                     bg-gradient-to-r from-teal-600 to-emerald-600 
                     rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl 
-                    transform hover:-translate-y-1 hover:scale-105
-                    animate-fade-in-up [animation-delay:1600ms]
-                    group/button"
+                    transform hover:-translate-y-1 hover:scale-105 group/button"
                 >
                   <span className="relative z-10">Visit Our Store →</span>
                   <div className="absolute inset-0 h-[200%] w-[200%] rotate-45 translate-x-[-70%] transition-all
@@ -204,4 +190,4 @@ export default function StoreSection() {
       </div>
     </section>
   );
-} 
+}
