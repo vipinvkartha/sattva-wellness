@@ -8,6 +8,7 @@ import { ImageModal } from './components/ImageModal';
 import NavMenu from './components/NavMenu';
 import QuoteDisplay from '../src/components/QuoteDisplay'
 import PricingSection from '@/components/PricingSection';
+import StoreSection from '@/components/StoreSection';
 
 interface FeatureCardProps {
   icon: ReactNode;
@@ -357,6 +358,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <StoreSection />
 
       {/* CTA Section */}
       <section id="contact" className="bg-gradient-to-br from-teal-900 to-slate-900 dark:from-slate-900 dark:to-black py-16">
