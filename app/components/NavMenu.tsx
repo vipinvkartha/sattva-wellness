@@ -8,8 +8,15 @@ import Link from 'next/link';
 const menuItems = [
   { label: 'Home', href: '/', isSection: false },
   { label: 'What We Offer', href: '#features', isSection: true },
+  { label: 'Our Packages', href: '#pricing', isSection: true },
   { label: 'Gallery', href: '#gallery', isSection: true },
   { label: 'Testimonials', href: '#testimonials', isSection: true },
+  { 
+    label: 'Store ✨', 
+    href: '#store', 
+    isSection: true,
+    isStore: true
+  },
   { label: 'Contact', href: '#contact', isSection: true },
 ];
 
@@ -25,19 +32,49 @@ function NavMenu() {
       setIsScrolled(window.scrollY > 50);
 
       if (pathname === '/') {
-        // Only track sections on home page
-        const sections = menuItems.filter(item => item.isSection).map(item => item.href.substring(1));
-        const currentSection = sections.find(section => {
-          const element = document.getElementById(section);
-          if (element) {
-            const rect = element.getBoundingClientRect();
-            return rect.top <= 100 && rect.bottom >= 100;
-          }
-          return false;
-        });
+        const sections = menuItems
+          .filter(item => item.isSection)
+          .map(item => item.href.substring(1));
 
-        if (currentSection) {
-          setActiveSection(currentSection);
+        type Section = {
+          id: string;
+          top: number;
+          bottom: number;
+          height: number;
+        };
+
+        // Find all visible sections
+        const visibleSections = sections
+          .map(section => {
+            const element = document.getElementById(section);
+            if (element) {
+              const rect = element.getBoundingClientRect();
+              return {
+                id: section,
+                top: rect.top,
+                bottom: rect.bottom,
+                height: rect.height
+              };
+            }
+            return null;
+          })
+          .filter((section): section is Section => section !== null);
+
+        // Find the most visible section
+        const mostVisible = visibleSections.reduce<Section | null>((prev, current) => {
+          const viewportHeight = window.innerHeight;
+          const currentVisibleHeight = Math.min(current.bottom, viewportHeight) - 
+            Math.max(current.top, 0);
+          const prevVisibleHeight = prev ? 
+            Math.min(prev.bottom, viewportHeight) - Math.max(prev.top, 0) : 0;
+
+          return currentVisibleHeight > prevVisibleHeight ? current : prev;
+        }, visibleSections[0] || null);
+
+        if (mostVisible) {
+          setActiveSection(mostVisible.id);
+        } else if (window.scrollY < 100) {
+          setActiveSection('home');
         }
       }
     };
@@ -87,37 +124,67 @@ function NavMenu() {
               <Logo />
             </Link>
             
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </button>
+            <div className="flex items-center gap-4">
+              <div className="lg:hidden">
+                <a
+                  href="https://forms.zohopublic.eu/sattva/form/SattvaWellnessRegistrationForm/formperma/uESkDIJRLWFDFCpd6VWeBhSa5TEBQEBLsUVnG1JVayI"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 text-sm font-medium text-white 
+                    bg-teal-500 hover:bg-teal-600 rounded-full transition-colors duration-200"
+                >
+                  Register
+                </a>
+              </div>
+
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="lg:hidden p-2 rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
+              </button>
+            </div>
 
             <div className="hidden lg:flex items-center justify-center gap-8">
               {menuItems.map((item) => (
                 <button
                   key={item.href}
                   onClick={() => handleNavigation(item)}
-                  className={`relative px-3 py-2 text-sm font-medium transition-colors
-                    ${activeSection === item.href.substring(1) && item.isSection && pathname === '/'
-                      ? 'text-teal-600 dark:text-teal-400 font-semibold'
-                      : 'text-gray-800 hover:text-teal-600 dark:text-gray-100 dark:hover:text-teal-400'
-                    }
-                    after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-center
-                    after:scale-x-0 after:bg-teal-600 dark:after:bg-teal-400 after:transition-transform
-                    after:duration-300 hover:after:scale-x-100
-                    ${activeSection === item.href.substring(1) && item.isSection && pathname === '/' ? 'after:scale-x-100' : ''}
+                  className={`relative px-3 py-2 text-sm font-medium transition-all duration-300
+                    ${item.isStore ? `
+                      bg-gradient-to-r from-teal-500 to-emerald-500 
+                      text-white rounded-lg shadow-[0_4px_0_0_#0d9488] 
+                      hover:shadow-[0_2px_0_0_#0d9488] hover:translate-y-0.5
+                      active:shadow-none active:translate-y-1
+                      px-4 -mx-1
+                    ` : `
+                      text-gray-800 hover:text-teal-600 dark:text-gray-100 dark:hover:text-teal-400
+                      after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full 
+                      after:origin-center after:scale-x-0 after:bg-teal-600 
+                      dark:after:bg-teal-400 after:transition-transform
+                      after:duration-300 hover:after:scale-x-100
+                      ${activeSection === item.href.substring(1) && item.isSection && pathname === '/' ? 'after:scale-x-100' : ''}
+                    `}
                   `}
                 >
                   {item.label}
                 </button>
               ))}
+
+              <a
+                href="https://forms.zohopublic.eu/sattva/form/SattvaWellnessRegistrationForm/formperma/uESkDIJRLWFDFCpd6VWeBhSa5TEBQEBLsUVnG1JVayI"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 text-sm font-medium text-white 
+                  bg-teal-500 hover:bg-teal-600 rounded-full transition-colors duration-200"
+              >
+                Register
+              </a>
             </div>
           </div>
         </div>
@@ -130,11 +197,18 @@ function NavMenu() {
               <button
                 key={item.href}
                 onClick={() => handleNavigation(item)}
-                className={`block w-full px-4 py-3 text-left text-base font-medium rounded-md transition-colors
-                  ${activeSection === item.href.substring(1) && item.isSection && pathname === '/'
-                    ? 'bg-teal-50 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 font-semibold'
-                    : 'text-gray-800 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800/50'
-                  }
+                className={`block w-full px-4 py-3 text-left text-base font-medium rounded-md transition-all duration-300
+                  ${item.isStore ? `
+                    bg-gradient-to-r from-teal-500 to-emerald-500 
+                    text-white shadow-[0_4px_0_0_#0d9488] 
+                    hover:shadow-[0_2px_0_0_#0d9488] hover:translate-y-0.5
+                    active:shadow-none active:translate-y-1
+                  ` : `
+                    ${activeSection === item.href.substring(1) && item.isSection && pathname === '/'
+                      ? 'bg-teal-50 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 font-semibold'
+                      : 'text-gray-800 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                    }
+                  `}
                 `}
               >
                 {item.label}
