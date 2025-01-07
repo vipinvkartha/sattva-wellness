@@ -1,14 +1,14 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Button } from "@/app/components/ui/button";
+import { Card } from "@/app/components/ui/card";
 import { Heart, Leaf, PersonStanding, Sun, TentTree, Wind } from "lucide-react";
 import { ReactNode, useState } from "react";
 import { ImageModal } from './components/ImageModal';
 import NavMenu from './components/NavMenu';
-import QuoteDisplay from '@/components/QuoteDisplay';
-import PricingSection from '@/components/PricingSection';
-import StoreSection from '@/components/StoreSection';
+import QuoteDisplay from '@/app/components/QuoteDisplay';
+import PricingSection from '@/app/components/PricingSection';
+import StoreSection from '@/app/components/StoreSection';
 
 interface FeatureCardProps {
   icon: ReactNode;
