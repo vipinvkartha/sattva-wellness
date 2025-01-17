@@ -8,7 +8,21 @@ import Link from 'next/link';
 const menuItems = [
   { label: 'Home', href: '/', isSection: false },
   { label: 'What We Offer', href: '#features', isSection: true },
-  { label: 'Our Packages', href: '#pricing', isSection: true },
+  { 
+    label: (
+      <div className="relative">
+        <span className="absolute -top-4 left-1/2 transform -translate-x-1/2 text-xs px-2 py-0.5 
+          bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full text-white font-medium 
+          whitespace-nowrap shadow-sm animate-pulse"
+        >
+          from ₹999
+        </span>
+        <span>Our Packages</span>
+      </div>
+    ), 
+    href: '#pricing', 
+    isSection: true 
+  },
   { label: 'Gallery', href: '#gallery', isSection: true },
   { label: 'Testimonials', href: '#testimonials', isSection: true },
   { 
