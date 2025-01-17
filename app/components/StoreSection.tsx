@@ -34,18 +34,31 @@ export default function StoreSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="relative text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl
-            group cursor-default"
+            group cursor-default flex flex-col items-center"
           >
-            <span className="relative">
-              Wellness Store
-              <span className="absolute inset-0 w-full bg-gradient-to-r from-transparent via-teal-400/20 to-transparent
-                opacity-0 group-hover:opacity-100 group-hover:animate-[shimmer_2s_ease-in-out_infinite]
-                -z-10"
-              ></span>
-            </span>
+            <div className="flex items-center gap-4">
+              <Image
+                src="/store/vibha-logo.png"
+                alt="Vibha Collection Logo"
+                width={48}
+                height={48}
+                className="rounded-full shadow-md transform hover:scale-105 transition-transform duration-300
+                  ring-2 ring-teal-500/20 hover:ring-teal-500/40"
+              />
+              <span className="relative inline-block">
+                Vibha Collection
+                <span className="absolute inset-0 w-full bg-gradient-to-r from-transparent via-teal-400/20 to-transparent
+                  opacity-0 group-hover:opacity-100 group-hover:animate-[shimmer_2s_ease-in-out_infinite]
+                  -z-10"
+                ></span>
+              </span>
+            </div>
+            <span className="h-1 w-24 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full mt-2
+              transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
+            ></span>
           </h2>
-          <p className="mt-4 text-xl text-gray-600 dark:text-gray-300">
-            Discover our collection of mindfully curated wellness products
+          <p className="mt-6 text-xl text-gray-600 dark:text-gray-300 font-light">
+            Sacred jewelry and spiritual accessories for your mindful journey
           </p>
           
           <div className="mt-8 relative overflow-hidden group/box">
