@@ -58,10 +58,10 @@ const testimonials = [
   },
   {
     text: "The meditation sessions have helped me manage stress and find inner peace. The instructors guide you with patience and understanding, making it perfect for beginners like me.",
-    name: "Anjali Nair",
-    designation: "Healthcare Professional",
-    location: "Calicut",
-    image: "/testimonials/anjali.jpg"
+    name: "Anamika",
+    designation: "Lawyer",
+    location: "Palakkad",
+    image: "/testimonials/anamika.jpg"
   }
 ];
 
@@ -163,7 +163,7 @@ export default function Home() {
       <section className="pb-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <a 
-            href="https://sattvawellness.store.link/" 
+            href="https://vibha.store.link/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="group inline-flex items-center px-6 py-3 text-lg font-medium relative
@@ -220,6 +220,134 @@ export default function Home() {
               title="Wellness Camps"
               description="Immersive retreats focused on rejuvenation and holistic transformation"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Why Yoga Section */}
+      <section id="why-yoga" className="py-16 bg-gradient-to-br from-teal-50/50 via-white to-teal-50/50 
+        dark:from-teal-950/50 dark:via-gray-900 dark:to-teal-950/50">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-teal-900 dark:text-teal-100 mb-12">
+            Why Choose Yoga?
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Physical Benefits */}
+            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 shadow-lg
+              hover:shadow-xl transition-all duration-300 border border-teal-100 dark:border-teal-800
+              hover:border-teal-200 dark:hover:border-teal-700 group">
+              <div className="h-12 w-12 rounded-full bg-teal-100 dark:bg-teal-900 flex items-center justify-center mb-4
+                group-hover:scale-110 transition-transform duration-300">
+                <svg className="h-6 w-6 text-teal-600 dark:text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-teal-900 dark:text-teal-100 mb-3">Physical Benefits</h3>
+              <ul className="space-y-2 text-teal-700 dark:text-teal-300">
+                <li className="flex items-center">
+                  <span className="mr-2">•</span>
+                  Improves flexibility and posture
+                </li>
+                <li className="flex items-center">
+                  <span className="mr-2">•</span>
+                  Strengthens muscles and joints
+                </li>
+                <li className="flex items-center">
+                  <span className="mr-2">•</span>
+                  Enhances balance and coordination
+                </li>
+                <li className="flex items-center">
+                  <span className="mr-2">•</span>
+                  Boosts energy and vitality
+                </li>
+              </ul>
+            </div>
+
+            {/* Mental Benefits */}
+            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 shadow-lg
+              hover:shadow-xl transition-all duration-300 border border-teal-100 dark:border-teal-800
+              hover:border-teal-200 dark:hover:border-teal-700 group">
+              <div className="h-12 w-12 rounded-full bg-teal-100 dark:bg-teal-900 flex items-center justify-center mb-4
+                group-hover:scale-110 transition-transform duration-300">
+                <svg className="h-6 w-6 text-teal-600 dark:text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-teal-900 dark:text-teal-100 mb-3">Mental Benefits</h3>
+              <ul className="space-y-2 text-teal-700 dark:text-teal-300">
+                <li className="flex items-center">
+                  <span className="mr-2">•</span>
+                  Reduces stress and anxiety
+                </li>
+                <li className="flex items-center">
+                  <span className="mr-2">•</span>
+                  Improves concentration
+                </li>
+                <li className="flex items-center">
+                  <span className="mr-2">•</span>
+                  Enhances emotional balance
+                </li>
+                <li className="flex items-center">
+                  <span className="mr-2">•</span>
+                  Promotes better sleep
+                </li>
+              </ul>
+            </div>
+
+            {/* Spiritual Benefits */}
+            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 shadow-lg
+              hover:shadow-xl transition-all duration-300 border border-teal-100 dark:border-teal-800
+              hover:border-teal-200 dark:hover:border-teal-700 group">
+              <div className="h-12 w-12 rounded-full bg-teal-100 dark:bg-teal-900 flex items-center justify-center mb-4
+                group-hover:scale-110 transition-transform duration-300">
+                <svg className="h-6 w-6 text-teal-600 dark:text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-teal-900 dark:text-teal-100 mb-3">Spiritual Benefits</h3>
+              <ul className="space-y-2 text-teal-700 dark:text-teal-300">
+                <li className="flex items-center">
+                  <span className="mr-2">•</span>
+                  Deepens self-awareness
+                </li>
+                <li className="flex items-center">
+                  <span className="mr-2">•</span>
+                  Cultivates inner peace
+                </li>
+                <li className="flex items-center">
+                  <span className="mr-2">•</span>
+                  Connects mind and body
+                </li>
+                <li className="flex items-center">
+                  <span className="mr-2">•</span>
+                  Enhances mindfulness
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Call to Action */}
+          <div className="mt-12 text-center">
+            <p className="text-lg text-teal-700 dark:text-teal-300 mb-6 max-w-2xl mx-auto">
+              Experience these transformative benefits firsthand. Join our yoga community and begin your journey towards holistic well-being.
+            </p>
+            <a
+              href="https://forms.zohopublic.eu/sattva/form/SattvaWellnessRegistrationForm/formperma/uESkDIJRLWFDFCpd6VWeBhSa5TEBQEBLsUVnG1JVayI"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-6 py-3 text-base font-medium text-white 
+                bg-gradient-to-r from-teal-500 to-emerald-500 
+                hover:from-teal-400 hover:to-emerald-400
+                rounded-full shadow-lg hover:shadow-xl
+                transition-all duration-300 hover:scale-105
+                border border-teal-400/20 hover:border-teal-300/30"
+            >
+              Start Your Yoga Journey
+            </a>
           </div>
         </div>
       </section>

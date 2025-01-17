@@ -7,21 +7,21 @@ export default function StoreSection() {
       description: "Rudraksha & Crystal energy companions",
       image: "/store/healing-bracelets.jpg",
       alt: "Collection of healing bracelets",
-      link: "https://sattvawellness.store.link/category/hand-chain"
+      link: "https://vibha.store.link/category/hand-chain"
     },
     {
       title: "Sacred Chains",
       description: "Spiritual & healing necklaces",
       image: "/store/sacred-chains.jpg",
       alt: "Beautiful sacred chains collection",
-      link: "https://sattvawellness.store.link/category/chain"
+      link: "https://vibha.store.link/category/chain"
     },
     {
       title: "Special Combos",
       description: "Enhanced spiritual practice sets",
       image: "/store/special-combos.jpg",
       alt: "Special wellness product combinations",
-      link: "https://sattvawellness.store.link/category/combos"
+      link: "https://vibha.store.link/category/combos"
     }
   ];
 
@@ -141,7 +141,7 @@ export default function StoreSection() {
 
               <div className="mt-8 flex flex-col items-center space-y-4">
                 <button
-                  onClick={() => window.open('https://sattvawellness.store.link/', '_blank')}
+                  onClick={() => window.open('https://vibha.store.link/', '_blank')}
                   className="relative mt-4 px-6 py-3 text-base font-medium text-white overflow-hidden
                     bg-gradient-to-r from-teal-600 to-emerald-600 
                     rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl 
