@@ -2,7 +2,7 @@ export default function PricingSection() {
   const packages = [
     {
       name: 'Weekday Classes',
-      price: '₹2,999',
+      price: '₹999',
       period: '/month',
       description: 'Perfect for regular practice during weekdays',
       features: [
@@ -11,19 +11,6 @@ export default function PricingSection() {
         'Morning and evening batches',
         'Access to recorded sessions',
         'Basic wellness consultation'
-      ]
-    },
-    {
-      name: 'Weekend Classes',
-      price: '₹1,999',
-      period: '/month',
-      description: 'Ideal for busy professionals',
-      features: [
-        'Saturday & Sunday sessions',
-        'Extended class duration',
-        'Intensive practice sessions',
-        'Access to recorded sessions',
-        'Monthly wellness check-in'
       ],
       popular: true
     },
@@ -54,17 +41,17 @@ export default function PricingSection() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-3">
+        <div className="mt-16 grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
           {packages.map((pkg) => (
             <div 
               key={pkg.name}
               className={`relative bg-white rounded-2xl shadow-lg overflow-hidden
-                ${pkg.popular ? 'ring-2 ring-[#14b8a6] transform scale-105' : ''}
+                ${pkg.popular ? 'ring-2 ring-[#14b8a6] transform scale-105 md:translate-y-0' : 'md:translate-y-4'}
               `}
             >
               {pkg.popular && (
                 <div className="absolute top-0 right-0 bg-[#14b8a6] text-white px-4 py-1 rounded-bl-lg text-sm font-medium">
-                  Popular
+                  Most Popular
                 </div>
               )}
               

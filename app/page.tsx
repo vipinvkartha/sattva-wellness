@@ -57,7 +57,7 @@ const testimonials = [
     image: "/testimonials/rahul.jpg"
   },
   {
-    text: "The meditation sessions have helped me manage stress and find inner peace. The instructors guide you with patience and understanding, making it perfect for beginners like me.",
+    text: "The meditation sessions have helped me manage stress and find inner peace. Instructor Midhun guide you with patience and understanding, making it perfect for beginners like me.",
     name: "Anamika",
     designation: "Lawyer",
     location: "Palakkad",
