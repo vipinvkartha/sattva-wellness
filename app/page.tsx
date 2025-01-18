@@ -10,6 +10,7 @@ import QuoteDisplay from '@/app/components/QuoteDisplay';
 import PricingSection from '@/app/components/PricingSection';
 import StoreSection from '@/app/components/StoreSection';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface FeatureCardProps {
   icon: ReactNode;
@@ -47,29 +48,33 @@ const testimonials = [
     text: "The yoga classes at Sattva Wellness have completely transformed my approach to mindfulness. The instructors are incredibly knowledgeable and create a welcoming environment for all skill levels.",
     name: "Vipin Vijayan",
     designation: "Engineer",
-    location: "Kannur",
-    image: "/testimonials/vipin.jpg"
+    location: "Kochi, Kerala",
+    image: "/testimonials/vipin.jpg",
+    rating: 5
   },
   {
     text: "The yoga sessions have been truly transformative for my physical and mental well-being. The perfect blend of asanas, pranayama, and meditation has helped me find balance in my busy life. The instructors' guidance is exceptional.",
     name: "Arjun",
     designation: "Engineer",
     location: "Palakkad",
-    image: "/testimonials/arjun.jpg"
+    image: "/testimonials/arjun.jpg",
+    rating: 4.5
   },
   {
     text: "The meditation sessions have helped me manage stress and find inner peace. Instructor Midhun guide you with patience and understanding, making it perfect for beginners like me.",
     name: "Anamika",
     designation: "Lawyer",
     location: "Palakkad",
-    image: "/testimonials/anamika.jpg"
+    image: "/testimonials/anamika.jpg",
+    rating: 4.5
   },
   {
     text: "Joining Sattva Wellness has been a transformative experience. The holistic approach to wellness and the expert guidance has helped me maintain work-life balance and improve my overall well-being.",
     name: "Athira",
     designation: "Teacher",
     location: "Calicut",
-    image: "/testimonials/athira.jpg"
+    image: "/testimonials/athira.jpg",
+    rating: 5
   }
 ];
 
@@ -140,6 +145,57 @@ function TestimonialCarousel({ testimonials }: { testimonials: any[] }) {
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 {testimonial.location}
               </p>
+            </div>
+            {/* Rating Stars */}
+            <div className="flex justify-center gap-1">
+              {[...Array(5)].map((_, i) => {
+                const starValue = i + 1;
+                const ratingDiff = testimonial.rating - i;
+                
+                return (
+                  <svg
+                    key={i}
+                    className="w-5 h-5"
+                    viewBox="0 0 20 20"
+                  >
+                    {ratingDiff >= 1 ? (
+                      // Full star
+                      <path
+                        className="text-yellow-400"
+                        fill="currentColor"
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    ) : ratingDiff > 0 ? (
+                      // Partial star
+                      <g>
+                        <path
+                          className="text-gray-300 dark:text-gray-600"
+                          fill="currentColor"
+                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                        />
+                        <defs>
+                          <clipPath id={`clip-${i}-${testimonial.name}`}>
+                            <rect x="0" y="0" width={`${ratingDiff * 100}%`} height="100%" />
+                          </clipPath>
+                        </defs>
+                        <path
+                          className="text-yellow-400"
+                          fill="currentColor"
+                          d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                          clipPath={`url(#clip-${i}-${testimonial.name})`}
+                        />
+                      </g>
+                    ) : (
+                      // Empty star
+                      <path
+                        className="text-gray-300 dark:text-gray-600"
+                        fill="currentColor"
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    )}
+                  </svg>
+                );
+              })}
             </div>
             <p className="text-gray-700 dark:text-gray-300 italic text-sm leading-relaxed">
               "{testimonial.text}"
@@ -532,15 +588,22 @@ export default function Home() {
               rel="noopener noreferrer"
               className="flex items-center space-x-2 text-base sm:text-lg font-medium text-green-400 hover:text-green-300 transition-colors"
             >
-              <svg
-                className="h-5 w-5 sm:h-6 sm:w-6"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+              <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
               </svg>
               <span>Call +919895798155</span>
             </a>
+
+            {/* Quick Links */}
+            <div className="flex flex-wrap justify-center gap-6 text-sm text-teal-300">
+              <Link href="/careers" className="hover:text-white transition-colors">
+                Careers
+              </Link>
+              <span>•</span>
+              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+              <span>•</span>
+              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            </div>
 
             {/* Social Links */}
             <div className="flex items-center space-x-6">
