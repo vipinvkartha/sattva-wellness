@@ -3,12 +3,13 @@
 import { Button } from "@/app/components/ui/button";
 import { Card } from "@/app/components/ui/card";
 import { Heart, Leaf, PersonStanding, Sun, TentTree, Wind } from "lucide-react";
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect, useRef } from "react";
 import { ImageModal } from './components/ImageModal';
 import NavMenu from './components/NavMenu';
 import QuoteDisplay from '@/app/components/QuoteDisplay';
 import PricingSection from '@/app/components/PricingSection';
 import StoreSection from '@/app/components/StoreSection';
+import Image from 'next/image';
 
 interface FeatureCardProps {
   icon: ReactNode;
@@ -44,17 +45,17 @@ function FeatureCard({ icon, title, description }: FeatureCardProps) {
 const testimonials = [
   {
     text: "The yoga classes at Sattva Wellness have completely transformed my approach to mindfulness. The instructors are incredibly knowledgeable and create a welcoming environment for all skill levels.",
-    name: "Priya Sharma",
-    designation: "Software Engineer at TCS",
-    location: "Kochi, Kerala",
-    image: "/testimonials/priya.jpg"
+    name: "Vipin Vijayan",
+    designation: "Engineer",
+    location: "Kannur",
+    image: "/testimonials/vipin.jpg"
   },
   {
-    text: "I've attended several wellness camps, and each experience has been life-changing. The combination of meditation, yoga, and holistic health practices has helped me find balance in my busy life.",
-    name: "Rahul Menon",
-    designation: "Corporate Lawyer",
-    location: "Trivandrum",
-    image: "/testimonials/rahul.jpg"
+    text: "The yoga sessions have been truly transformative for my physical and mental well-being. The perfect blend of asanas, pranayama, and meditation has helped me find balance in my busy life. The instructors' guidance is exceptional.",
+    name: "Arjun",
+    designation: "Engineer",
+    location: "Palakkad",
+    image: "/testimonials/arjun.jpg"
   },
   {
     text: "The meditation sessions have helped me manage stress and find inner peace. Instructor Midhun guide you with patience and understanding, making it perfect for beginners like me.",
@@ -62,6 +63,13 @@ const testimonials = [
     designation: "Lawyer",
     location: "Palakkad",
     image: "/testimonials/anamika.jpg"
+  },
+  {
+    text: "Joining Sattva Wellness has been a transformative experience. The holistic approach to wellness and the expert guidance has helped me maintain work-life balance and improve my overall well-being.",
+    name: "Athira",
+    designation: "Teacher",
+    location: "Calicut",
+    image: "/testimonials/athira.jpg"
   }
 ];
 
@@ -97,6 +105,51 @@ const galleryImages = [
     description: "Learning traditional wellness recipes"
   }
 ];
+
+function TestimonialCarousel({ testimonials }: { testimonials: any[] }) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto px-4">
+      {testimonials.map((testimonial, index) => (
+        <div
+          key={`testimonial-${index}`}
+          className="flex flex-col items-center text-center group"
+        >
+          {/* Profile Image Circle */}
+          <div className="relative w-32 h-32 mb-6 transform transition-transform duration-500 group-hover:scale-110">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 animate-spin-slow opacity-75 blur-md" />
+            <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl">
+              <Image
+                src={testimonial.image}
+                alt={testimonial.name}
+                fill
+                sizes="(max-width: 768px) 100vw, 128px"
+                className="object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="space-y-3">
+            <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
+              {testimonial.name}
+            </h3>
+            <div className="space-y-1">
+              <p className="text-sm font-medium text-teal-600 dark:text-teal-400">
+                {testimonial.designation}
+              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                {testimonial.location}
+              </p>
+            </div>
+            <p className="text-gray-700 dark:text-gray-300 italic text-sm leading-relaxed">
+              "{testimonial.text}"
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function Home() {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
@@ -430,60 +483,14 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-16 bg-gradient-to-b from-transparent via-teal-50/50 to-transparent dark:via-teal-950/30">
+      <section id="testimonials" className="py-16 bg-gradient-to-br from-white to-teal-50/30 
+        dark:from-gray-900 dark:to-teal-950/30"
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-teal-900 dark:text-teal-100 mb-4">
-            What Our Clients Say
+          <h2 className="text-center text-3xl font-bold tracking-tight text-teal-900 dark:text-teal-100 mb-12">
+            What Our Community Says
           </h2>
-          <p className="text-center text-teal-600 dark:text-teal-400 mb-12 max-w-2xl mx-auto">
-            Real experiences from our community members who have transformed their lives through our wellness programs
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div 
-                key={index}
-                className="relative bg-white dark:bg-teal-950/30 rounded-2xl p-6 shadow-md hover:shadow-xl
-                  transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm"
-              >
-                {/* Quote Icon */}
-                <div className="absolute -top-4 left-6 text-teal-500/10 dark:text-teal-400/10">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.956.76-3.022.66-1.065 1.515-1.867 2.558-2.403L9.373 5c-.8.396-1.56.898-2.26 1.505-.71.607-1.34 1.305-1.9 2.094s-.98 1.68-1.25 2.69-.346 2.04-.217 3.1c.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003zm9.124 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.692-1.327-.817-.56-.124-1.074-.13-1.54-.022-.16-.94.09-1.95.75-3.02.66-1.06 1.514-1.86 2.557-2.4L18.49 5c-.8.396-1.555.898-2.26 1.505-.708.607-1.34 1.305-1.894 2.094-.556.79-.97 1.68-1.24 2.69-.273 1-.345 2.04-.217 3.1.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003z" />
-                  </svg>
-                </div>
-
-                <div className="space-y-4">
-                  {/* Testimonial Text */}
-                  <p className="text-teal-700 dark:text-teal-300 relative z-10">
-                    "{testimonial.text}"
-                  </p>
-                  
-                  {/* Author Info */}
-                  <div className="flex items-center space-x-3 pt-4 border-t border-teal-100 dark:border-teal-800">
-                    <div className="flex-shrink-0">
-                      <img
-                        className="h-10 w-10 rounded-full object-cover"
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                      />
-                    </div>
-                    <div>
-                      <div className="text-base font-medium text-teal-900 dark:text-teal-100">
-                        {testimonial.name}
-                      </div>
-                      <div className="text-sm text-teal-700 dark:text-teal-300 font-medium">
-                        {testimonial.designation}
-                      </div>
-                      <div className="text-sm text-teal-600 dark:text-teal-400">
-                        {testimonial.location}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <TestimonialCarousel testimonials={testimonials} />
         </div>
       </section>
 

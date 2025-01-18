@@ -42,6 +42,7 @@ module.exports = {
         'fade-in-up': 'fade-in-up 0.7s ease-out forwards',
         'slide-left': 'slide-left 0.5s ease-in-out forwards',
         'slide-right': 'slide-right 0.5s ease-in-out forwards',
+        'spin-slow': 'spin 8s linear infinite',
       },
       colors: {
         border: "hsl(var(--border))",
