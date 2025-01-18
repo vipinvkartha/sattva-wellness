@@ -9,8 +9,8 @@ export default function PricingSection() {
         'Monday to Friday sessions',
         'Group classes',
         'Morning and evening batches',
-        'Access to recorded sessions',
-        'Basic wellness consultation'
+        'Basic wellness consultation',
+        'Discount on Wellness camp packages'
       ],
       popular: true
     },
@@ -24,7 +24,8 @@ export default function PricingSection() {
         'Customized practice plan',
         'Personal attention',
         'Progress tracking',
-        'Weekly wellness consultation'
+        'Special store discounts',
+        'Discount on Wellness camp packages'
       ]
     }
   ];
@@ -98,7 +99,7 @@ export default function PricingSection() {
         </div>
 
         <p className="mt-12 text-center text-gray-500">
-          All packages include access to our wellness community and monthly workshops
+          All packages include access to our wellness community.
         </p>
       </div>
     </section>
