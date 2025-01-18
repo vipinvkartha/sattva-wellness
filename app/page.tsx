@@ -171,7 +171,7 @@ export default function Home() {
       <NavMenu />
       
       {/* Hero Section */}
-      <section id="home" className="relative px-4 pt-28 pb-16 sm:px-6 lg:px-8 lg:pt-40 overflow-hidden">
+      <section id="home" className="relative px-4 pt-36 pb-16 sm:px-6 lg:px-8 lg:pt-48 overflow-hidden">
         {/* Subtle pattern overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-teal-100/20 via-transparent to-transparent dark:from-teal-800/10"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-teal-100/30 to-transparent 

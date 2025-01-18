@@ -124,7 +124,7 @@ function NavMenu() {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+      <nav className={`fixed top-[36px] left-0 right-0 z-[100] transition-all duration-300 ${
         isScrolled || isMobileMenuOpen
           ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg' 
           : 'bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm'
