@@ -36,23 +36,20 @@ export default function StoreSection() {
           <h2 className="relative text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl
             group cursor-default flex flex-col items-center"
           >
-            <div className="flex items-center gap-4">
-              <Image
-                src="/store/vibha-logo.png"
-                alt="Vibha Collection Logo"
-                width={48}
-                height={48}
-                className="rounded-full shadow-md transform hover:scale-105 transition-transform duration-300
-                  ring-2 ring-teal-500/20 hover:ring-teal-500/40"
-              />
+            <a 
+              href="https://vibha.store.link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative inline-block hover:opacity-80 transition-opacity duration-300"
+            >
               <span className="relative inline-block">
-                Vibha Collection
+                Our Store - Vibha
                 <span className="absolute inset-0 w-full bg-gradient-to-r from-transparent via-teal-400/20 to-transparent
                   opacity-0 group-hover:opacity-100 group-hover:animate-[shimmer_2s_ease-in-out_infinite]
                   -z-10"
                 ></span>
               </span>
-            </div>
+            </a>
             <span className="h-1 w-24 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full mt-2
               transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
             ></span>
