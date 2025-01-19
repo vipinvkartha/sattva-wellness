@@ -48,7 +48,7 @@ const testimonials = [
     text: "The yoga classes at Sattva Wellness have completely transformed my approach to mindfulness. The instructors are incredibly knowledgeable and create a welcoming environment for all skill levels.",
     name: "Vipin Vijayan",
     designation: "Engineer",
-    location: "Kochi, Kerala",
+    location: "Kannur",
     image: "/testimonials/vipin.jpg",
     rating: 5
   },
@@ -74,6 +74,14 @@ const testimonials = [
     designation: "Teacher",
     location: "Calicut",
     image: "/testimonials/athira.jpg",
+    rating: 5
+  },
+  {
+    text: "Regular yoga practice at Sattva has significantly improved my flexibility and mental clarity. The personalized attention and positive environment make every session enjoyable and effective.",
+    name: "Abhijith",
+    designation: "Engineer",
+    location: "Malappuram",
+    image: "/testimonials/abhijith.jpg",
     rating: 5
   }
 ];
@@ -146,7 +154,7 @@ function TestimonialCarousel({ testimonials }: { testimonials: any[] }) {
                 {testimonial.location}
               </p>
             </div>
-            {/* Rating (Om Icons) */}
+            {/* Rating (Stars) */}
             <div className="flex justify-center gap-1">
               {[...Array(5)].map((_, i) => {
                 const ratingDiff = testimonial.rating - i;
@@ -154,44 +162,28 @@ function TestimonialCarousel({ testimonials }: { testimonials: any[] }) {
                 return (
                   <svg
                     key={i}
-                    className="w-5 h-5"
+                    className={`w-5 h-5 ${
+                      ratingDiff >= 1 
+                        ? 'text-emerald-500' 
+                        : ratingDiff > 0
+                        ? 'text-emerald-500' 
+                        : 'text-gray-300 dark:text-gray-600'
+                    }`}
                     viewBox="0 0 24 24"
+                    fill={ratingDiff > 0 && ratingDiff < 1 ? 'currentColor' : 'none'}
                   >
-                    {ratingDiff >= 1 ? (
-                      // Full Om
-                      <path
-                        className="text-teal-500"
-                        fill="currentColor"
-                        d="M12 2c-.5 0-1 .2-1.3.6-.3-.4-.8-.6-1.3-.6-1 0-1.7.8-1.7 1.7 0 .7.4 1.2 1 1.5-.6.3-1 .8-1 1.5 0 1 .8 1.7 1.7 1.7.5 0 1-.2 1.3-.6.3.4.8.6 1.3.6s1-.2 1.3-.6c.3.4.8.6 1.3.6 1 0 1.7-.8 1.7-1.7 0-.7-.4-1.2-1-1.5.6-.3 1-.8 1-1.5 0-1-.8-1.7-1.7-1.7-.5 0-1 .2-1.3.6-.3-.4-.8-.6-1.3-.6zm0 1.5c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm5.2 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 2c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm5.2 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zM12 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2s2-.9 2-2v-2c0-1.1-.9-2-2-2zm0 1.5c.3 0 .5.2.5.5v2c0 .3-.2.5-.5.5s-.5-.2-.5-.5v-2c0-.3.2-.5.5-.5zm0 6c-4.4 0-8 3.6-8 8h2c0-3.3 2.7-6 6-6s6 2.7 6 6h2c0-4.4-3.6-8-8-8z"
-                      />
-                    ) : ratingDiff > 0 ? (
-                      // Partial Om
-                      <g>
-                        <path
-                          className="text-gray-300 dark:text-gray-600"
-                          fill="currentColor"
-                          d="M12 2c-.5 0-1 .2-1.3.6-.3-.4-.8-.6-1.3-.6-1 0-1.7.8-1.7 1.7 0 .7.4 1.2 1 1.5-.6.3-1 .8-1 1.5 0 1 .8 1.7 1.7 1.7.5 0 1-.2 1.3-.6.3.4.8.6 1.3.6s1-.2 1.3-.6c.3.4.8.6 1.3.6 1 0 1.7-.8 1.7-1.7 0-.7-.4-1.2-1-1.5.6-.3 1-.8 1-1.5 0-1-.8-1.7-1.7-1.7-.5 0-1 .2-1.3.6-.3-.4-.8-.6-1.3-.6zm0 1.5c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm5.2 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 2c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm5.2 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zM12 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2s2-.9 2-2v-2c0-1.1-.9-2-2-2zm0 1.5c.3 0 .5.2.5.5v2c0 .3-.2.5-.5.5s-.5-.2-.5-.5v-2c0-.3.2-.5.5-.5zm0 6c-4.4 0-8 3.6-8 8h2c0-3.3 2.7-6 6-6s6 2.7 6 6h2c0-4.4-3.6-8-8-8z"
-                        />
-                        <defs>
-                          <clipPath id={`clip-${i}-${testimonial.name}`}>
-                            <rect x="0" y="0" width={`${ratingDiff * 100}%`} height="100%" />
-                          </clipPath>
-                        </defs>
-                        <path
-                          className="text-teal-500"
-                          fill="currentColor"
-                          d="M12 2c-.5 0-1 .2-1.3.6-.3-.4-.8-.6-1.3-.6-1 0-1.7.8-1.7 1.7 0 .7.4 1.2 1 1.5-.6.3-1 .8-1 1.5 0 1 .8 1.7 1.7 1.7.5 0 1-.2 1.3-.6.3.4.8.6 1.3.6s1-.2 1.3-.6c.3.4.8.6 1.3.6 1 0 1.7-.8 1.7-1.7 0-.7-.4-1.2-1-1.5.6-.3 1-.8 1-1.5 0-1-.8-1.7-1.7-1.7-.5 0-1 .2-1.3.6-.3-.4-.8-.6-1.3-.6zm0 1.5c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm5.2 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 2c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm5.2 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zM12 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2s2-.9 2-2v-2c0-1.1-.9-2-2-2zm0 1.5c.3 0 .5.2.5.5v2c0 .3-.2.5-.5.5s-.5-.2-.5-.5v-2c0-.3.2-.5.5-.5zm0 6c-4.4 0-8 3.6-8 8h2c0-3.3 2.7-6 6-6s6 2.7 6 6h2c0-4.4-3.6-8-8-8z"
-                          clipPath={`url(#clip-${i}-${testimonial.name})`}
-                        />
-                      </g>
-                    ) : (
-                      // Empty Om
-                      <path
-                        className="text-gray-300 dark:text-gray-600"
-                        fill="currentColor"
-                        d="M12 2c-.5 0-1 .2-1.3.6-.3-.4-.8-.6-1.3-.6-1 0-1.7.8-1.7 1.7 0 .7.4 1.2 1 1.5-.6.3-1 .8-1 1.5 0 1 .8 1.7 1.7 1.7.5 0 1-.2 1.3-.6.3.4.8.6 1.3.6s1-.2 1.3-.6c.3.4.8.6 1.3.6 1 0 1.7-.8 1.7-1.7 0-.7-.4-1.2-1-1.5.6-.3 1-.8 1-1.5 0-1-.8-1.7-1.7-1.7-.5 0-1 .2-1.3.6-.3-.4-.8-.6-1.3-.6zm0 1.5c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm5.2 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 2c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm5.2 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zM12 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2s2-.9 2-2v-2c0-1.1-.9-2-2-2zm0 1.5c.3 0 .5.2.5.5v2c0 .3-.2.5-.5.5s-.5-.2-.5-.5v-2c0-.3.2-.5.5-.5zm0 6c-4.4 0-8 3.6-8 8h2c0-3.3 2.7-6 6-6s6 2.7 6 6h2c0-4.4-3.6-8-8-8z"
-                      />
-                    )}
+                    <defs>
+                      <linearGradient id={`star-gradient-${i}-${testimonial.name}`}>
+                        <stop offset={`${Math.min(Math.max(ratingDiff * 100, 0), 100)}%`} stopColor="currentColor" />
+                        <stop offset={`${Math.min(Math.max(ratingDiff * 100, 0), 100)}%`} stopColor="transparent" stopOpacity="0" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      fill={ratingDiff > 0 && ratingDiff < 1 ? `url(#star-gradient-${i}-${testimonial.name})` : 'currentColor'}
+                    />
                   </svg>
                 );
               })}
