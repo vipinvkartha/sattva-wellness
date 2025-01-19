@@ -120,22 +120,70 @@ const galleryImages = [
 ];
 
 function TestimonialCarousel({ testimonials }: { testimonials: any[] }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isMouseDown, setIsMouseDown] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  useEffect(() => {
+    const scroll = () => {
+      if (scrollRef.current && !isMouseDown) {
+        scrollRef.current.scrollLeft += 1;
+        
+        // Reset scroll position when reaching the end
+        if (scrollRef.current.scrollLeft >= 
+            scrollRef.current.scrollWidth - scrollRef.current.clientWidth) {
+          scrollRef.current.scrollLeft = 0;
+        }
+      }
+    };
+
+    const intervalId = setInterval(scroll, 50);
+    return () => clearInterval(intervalId);
+  }, [isMouseDown]);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsMouseDown(true);
+    setStartX(e.pageX - scrollRef.current!.offsetLeft);
+    setScrollLeft(scrollRef.current!.scrollLeft);
+  };
+
+  const handleMouseUp = () => {
+    setIsMouseDown(false);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isMouseDown) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current!.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollRef.current!.scrollLeft = scrollLeft - walk;
+  };
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto px-4">
+    <div 
+      ref={scrollRef}
+      className="flex overflow-x-hidden cursor-grab space-x-8 pb-4"
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+      onMouseMove={handleMouseMove}
+    >
+      {/* Original testimonials */}
       {testimonials.map((testimonial, index) => (
         <div
           key={`testimonial-${index}`}
-          className="flex flex-col items-center text-center group"
+          className="flex-shrink-0 w-[300px] group"
         >
           {/* Profile Image Circle */}
-          <div className="relative w-32 h-32 mb-6 transform transition-transform duration-500 group-hover:scale-110">
+          <div className="relative w-24 h-24 mx-auto mb-6 transform transition-transform duration-500 group-hover:scale-110">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 animate-spin-slow opacity-75 blur-md" />
             <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl">
               <Image
                 src={testimonial.image}
                 alt={testimonial.name}
                 fill
-                sizes="(max-width: 768px) 100vw, 128px"
+                sizes="96px"
                 className="object-cover"
               />
             </div>
@@ -143,10 +191,10 @@ function TestimonialCarousel({ testimonials }: { testimonials: any[] }) {
 
           {/* Content */}
           <div className="space-y-3">
-            <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
+            <h3 className="font-semibold text-lg text-center text-gray-900 dark:text-white">
               {testimonial.name}
             </h3>
-            <div className="space-y-1">
+            <div className="text-center space-y-1">
               <p className="text-sm font-medium text-teal-600 dark:text-teal-400">
                 {testimonial.designation}
               </p>
@@ -154,11 +202,10 @@ function TestimonialCarousel({ testimonials }: { testimonials: any[] }) {
                 {testimonial.location}
               </p>
             </div>
-            {/* Rating (Stars) */}
+            {/* Rating Stars */}
             <div className="flex justify-center gap-1">
               {[...Array(5)].map((_, i) => {
                 const ratingDiff = testimonial.rating - i;
-                
                 return (
                   <svg
                     key={i}
@@ -172,23 +219,82 @@ function TestimonialCarousel({ testimonials }: { testimonials: any[] }) {
                     viewBox="0 0 24 24"
                     fill={ratingDiff > 0 && ratingDiff < 1 ? 'currentColor' : 'none'}
                   >
-                    <defs>
-                      <linearGradient id={`star-gradient-${i}-${testimonial.name}`}>
-                        <stop offset={`${Math.min(Math.max(ratingDiff * 100, 0), 100)}%`} stopColor="currentColor" />
-                        <stop offset={`${Math.min(Math.max(ratingDiff * 100, 0), 100)}%`} stopColor="transparent" stopOpacity="0" />
-                      </linearGradient>
-                    </defs>
                     <path
                       d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
                       stroke="currentColor"
                       strokeWidth="1.5"
-                      fill={ratingDiff > 0 && ratingDiff < 1 ? `url(#star-gradient-${i}-${testimonial.name})` : 'currentColor'}
+                      fill={ratingDiff > 0 ? 'currentColor' : 'none'}
                     />
                   </svg>
                 );
               })}
             </div>
-            <p className="text-gray-700 dark:text-gray-300 italic text-sm leading-relaxed">
+            <p className="text-gray-700 dark:text-gray-300 italic text-sm leading-relaxed text-center">
+              "{testimonial.text}"
+            </p>
+          </div>
+        </div>
+      ))}
+
+      {/* Duplicate testimonials for seamless loop */}
+      {testimonials.map((testimonial, index) => (
+        <div
+          key={`testimonial-duplicate-${index}`}
+          className="flex-shrink-0 w-[300px] group"
+        >
+          {/* Same content as above */}
+          <div className="relative w-24 h-24 mx-auto mb-6 transform transition-transform duration-500 group-hover:scale-110">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 animate-spin-slow opacity-75 blur-md" />
+            <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl">
+              <Image
+                src={testimonial.image}
+                alt={testimonial.name}
+                fill
+                sizes="96px"
+                className="object-cover"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <h3 className="font-semibold text-lg text-center text-gray-900 dark:text-white">
+              {testimonial.name}
+            </h3>
+            <div className="text-center space-y-1">
+              <p className="text-sm font-medium text-teal-600 dark:text-teal-400">
+                {testimonial.designation}
+              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                {testimonial.location}
+              </p>
+            </div>
+            <div className="flex justify-center gap-1">
+              {[...Array(5)].map((_, i) => {
+                const ratingDiff = testimonial.rating - i;
+                return (
+                  <svg
+                    key={i}
+                    className={`w-5 h-5 ${
+                      ratingDiff >= 1 
+                        ? 'text-emerald-500' 
+                        : ratingDiff > 0
+                        ? 'text-emerald-500' 
+                        : 'text-gray-300 dark:text-gray-600'
+                    }`}
+                    viewBox="0 0 24 24"
+                    fill={ratingDiff > 0 && ratingDiff < 1 ? 'currentColor' : 'none'}
+                  >
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      fill={ratingDiff > 0 ? 'currentColor' : 'none'}
+                    />
+                  </svg>
+                );
+              })}
+            </div>
+            <p className="text-gray-700 dark:text-gray-300 italic text-sm leading-relaxed text-center">
               "{testimonial.text}"
             </p>
           </div>
@@ -197,6 +303,7 @@ function TestimonialCarousel({ testimonials }: { testimonials: any[] }) {
     </div>
   );
 }
+
 
 export default function Home() {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
