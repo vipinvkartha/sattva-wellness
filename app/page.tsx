@@ -88,12 +88,12 @@ const testimonials = [
 
 const galleryImages = [
   {
-    url: "/gallery/camp1.jpg",
+    url: "/gallery/camp4.jpg",
     title: "Morning Yoga Session",
     description: "Sunrise yoga at our beachside retreat"
   },
   {
-    url: "/gallery/camp2.jpg",
+    url: "/gallery/camp5.jpg",
     title: "Meditation Workshop",
     description: "Group meditation in our peaceful garden"
   },
@@ -103,19 +103,19 @@ const galleryImages = [
     description: "Mindful movement and breathing exercises"
   },
   {
-    url: "/gallery/camp4.jpg",
+    url: "/gallery/camp1.jpg",
     title: "Nature Connection",
     description: "Forest meditation and nature walks"
   },
   {
-    url: "/gallery/camp5.jpg",
+    url: "/gallery/camp2.jpg",
     title: "Group Sessions",
     description: "Community healing and sharing circles"
   },
   {
     url: "/gallery/camp6.jpg",
-    title: "Ayurvedic Cooking",
-    description: "Learning traditional wellness recipes"
+    title: "Musical night",
+    description: "Music and other activities"
   }
 ];
 
