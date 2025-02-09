@@ -48,7 +48,7 @@ const testimonials = [
     text: "The yoga classes at Sattva Wellness have completely transformed my approach to mindfulness. The instructors are incredibly knowledgeable and create a welcoming environment for all skill levels.",
     name: "Vipin Vijayan",
     designation: "Engineer",
-    location: "Kochi, Kerala",
+    location: "Kannur",
     image: "/testimonials/vipin.jpg",
     rating: 5
   },
@@ -75,17 +75,25 @@ const testimonials = [
     location: "Calicut",
     image: "/testimonials/athira.jpg",
     rating: 5
+  },
+  {
+    text: "Regular yoga practice at Sattva has significantly improved my flexibility and mental clarity. The personalized attention and positive environment make every session enjoyable and effective.",
+    name: "Abhijith",
+    designation: "Engineer",
+    location: "Malappuram",
+    image: "/testimonials/abhijith.jpg",
+    rating: 5
   }
 ];
 
 const galleryImages = [
   {
-    url: "/gallery/camp1.jpg",
+    url: "/gallery/camp4.jpg",
     title: "Morning Yoga Session",
     description: "Sunrise yoga at our beachside retreat"
   },
   {
-    url: "/gallery/camp2.jpg",
+    url: "/gallery/camp5.jpg",
     title: "Meditation Workshop",
     description: "Group meditation in our peaceful garden"
   },
@@ -95,39 +103,87 @@ const galleryImages = [
     description: "Mindful movement and breathing exercises"
   },
   {
-    url: "/gallery/camp4.jpg",
+    url: "/gallery/camp1.jpg",
     title: "Nature Connection",
     description: "Forest meditation and nature walks"
   },
   {
-    url: "/gallery/camp5.jpg",
+    url: "/gallery/camp2.jpg",
     title: "Group Sessions",
     description: "Community healing and sharing circles"
   },
   {
     url: "/gallery/camp6.jpg",
-    title: "Ayurvedic Cooking",
-    description: "Learning traditional wellness recipes"
+    title: "Musical night",
+    description: "Music and other activities"
   }
 ];
 
 function TestimonialCarousel({ testimonials }: { testimonials: any[] }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isMouseDown, setIsMouseDown] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  useEffect(() => {
+    const scroll = () => {
+      if (scrollRef.current && !isMouseDown) {
+        scrollRef.current.scrollLeft += 1;
+        
+        // Reset scroll position when reaching the end
+        if (scrollRef.current.scrollLeft >= 
+            scrollRef.current.scrollWidth - scrollRef.current.clientWidth) {
+          scrollRef.current.scrollLeft = 0;
+        }
+      }
+    };
+
+    const intervalId = setInterval(scroll, 50);
+    return () => clearInterval(intervalId);
+  }, [isMouseDown]);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsMouseDown(true);
+    setStartX(e.pageX - scrollRef.current!.offsetLeft);
+    setScrollLeft(scrollRef.current!.scrollLeft);
+  };
+
+  const handleMouseUp = () => {
+    setIsMouseDown(false);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isMouseDown) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current!.offsetLeft;
+    const walk = (x - startX) * 2;
+    scrollRef.current!.scrollLeft = scrollLeft - walk;
+  };
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto px-4">
+    <div 
+      ref={scrollRef}
+      className="flex overflow-x-hidden cursor-grab space-x-8 pb-4"
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+      onMouseMove={handleMouseMove}
+    >
+      {/* Original testimonials */}
       {testimonials.map((testimonial, index) => (
         <div
           key={`testimonial-${index}`}
-          className="flex flex-col items-center text-center group"
+          className="flex-shrink-0 w-[300px] group"
         >
           {/* Profile Image Circle */}
-          <div className="relative w-32 h-32 mb-6 transform transition-transform duration-500 group-hover:scale-110">
+          <div className="relative w-24 h-24 mx-auto mb-6 transform transition-transform duration-500 group-hover:scale-110">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 animate-spin-slow opacity-75 blur-md" />
             <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl">
               <Image
                 src={testimonial.image}
                 alt={testimonial.name}
                 fill
-                sizes="(max-width: 768px) 100vw, 128px"
+                sizes="96px"
                 className="object-cover"
               />
             </div>
@@ -135,10 +191,10 @@ function TestimonialCarousel({ testimonials }: { testimonials: any[] }) {
 
           {/* Content */}
           <div className="space-y-3">
-            <h3 className="font-semibold text-lg text-gray-900 dark:text-white">
+            <h3 className="font-semibold text-lg text-center text-gray-900 dark:text-white">
               {testimonial.name}
             </h3>
-            <div className="space-y-1">
+            <div className="text-center space-y-1">
               <p className="text-sm font-medium text-teal-600 dark:text-teal-400">
                 {testimonial.designation}
               </p>
@@ -146,57 +202,99 @@ function TestimonialCarousel({ testimonials }: { testimonials: any[] }) {
                 {testimonial.location}
               </p>
             </div>
-            {/* Rating (Om Icons) */}
+            {/* Rating Stars */}
             <div className="flex justify-center gap-1">
               {[...Array(5)].map((_, i) => {
                 const ratingDiff = testimonial.rating - i;
-                
                 return (
                   <svg
                     key={i}
-                    className="w-5 h-5"
+                    className={`w-5 h-5 ${
+                      ratingDiff >= 1 
+                        ? 'text-emerald-500' 
+                        : ratingDiff > 0
+                        ? 'text-emerald-500' 
+                        : 'text-gray-300 dark:text-gray-600'
+                    }`}
                     viewBox="0 0 24 24"
+                    fill={ratingDiff > 0 && ratingDiff < 1 ? 'currentColor' : 'none'}
                   >
-                    {ratingDiff >= 1 ? (
-                      // Full Om
-                      <path
-                        className="text-teal-500"
-                        fill="currentColor"
-                        d="M12 2c-.5 0-1 .2-1.3.6-.3-.4-.8-.6-1.3-.6-1 0-1.7.8-1.7 1.7 0 .7.4 1.2 1 1.5-.6.3-1 .8-1 1.5 0 1 .8 1.7 1.7 1.7.5 0 1-.2 1.3-.6.3.4.8.6 1.3.6s1-.2 1.3-.6c.3.4.8.6 1.3.6 1 0 1.7-.8 1.7-1.7 0-.7-.4-1.2-1-1.5.6-.3 1-.8 1-1.5 0-1-.8-1.7-1.7-1.7-.5 0-1 .2-1.3.6-.3-.4-.8-.6-1.3-.6zm0 1.5c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm5.2 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 2c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm5.2 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zM12 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2s2-.9 2-2v-2c0-1.1-.9-2-2-2zm0 1.5c.3 0 .5.2.5.5v2c0 .3-.2.5-.5.5s-.5-.2-.5-.5v-2c0-.3.2-.5.5-.5zm0 6c-4.4 0-8 3.6-8 8h2c0-3.3 2.7-6 6-6s6 2.7 6 6h2c0-4.4-3.6-8-8-8z"
-                      />
-                    ) : ratingDiff > 0 ? (
-                      // Partial Om
-                      <g>
-                        <path
-                          className="text-gray-300 dark:text-gray-600"
-                          fill="currentColor"
-                          d="M12 2c-.5 0-1 .2-1.3.6-.3-.4-.8-.6-1.3-.6-1 0-1.7.8-1.7 1.7 0 .7.4 1.2 1 1.5-.6.3-1 .8-1 1.5 0 1 .8 1.7 1.7 1.7.5 0 1-.2 1.3-.6.3.4.8.6 1.3.6s1-.2 1.3-.6c.3.4.8.6 1.3.6 1 0 1.7-.8 1.7-1.7 0-.7-.4-1.2-1-1.5.6-.3 1-.8 1-1.5 0-1-.8-1.7-1.7-1.7-.5 0-1 .2-1.3.6-.3-.4-.8-.6-1.3-.6zm0 1.5c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm5.2 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 2c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm5.2 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zM12 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2s2-.9 2-2v-2c0-1.1-.9-2-2-2zm0 1.5c.3 0 .5.2.5.5v2c0 .3-.2.5-.5.5s-.5-.2-.5-.5v-2c0-.3.2-.5.5-.5zm0 6c-4.4 0-8 3.6-8 8h2c0-3.3 2.7-6 6-6s6 2.7 6 6h2c0-4.4-3.6-8-8-8z"
-                        />
-                        <defs>
-                          <clipPath id={`clip-${i}-${testimonial.name}`}>
-                            <rect x="0" y="0" width={`${ratingDiff * 100}%`} height="100%" />
-                          </clipPath>
-                        </defs>
-                        <path
-                          className="text-teal-500"
-                          fill="currentColor"
-                          d="M12 2c-.5 0-1 .2-1.3.6-.3-.4-.8-.6-1.3-.6-1 0-1.7.8-1.7 1.7 0 .7.4 1.2 1 1.5-.6.3-1 .8-1 1.5 0 1 .8 1.7 1.7 1.7.5 0 1-.2 1.3-.6.3.4.8.6 1.3.6s1-.2 1.3-.6c.3.4.8.6 1.3.6 1 0 1.7-.8 1.7-1.7 0-.7-.4-1.2-1-1.5.6-.3 1-.8 1-1.5 0-1-.8-1.7-1.7-1.7-.5 0-1 .2-1.3.6-.3-.4-.8-.6-1.3-.6zm0 1.5c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm5.2 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 2c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm5.2 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zM12 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2s2-.9 2-2v-2c0-1.1-.9-2-2-2zm0 1.5c.3 0 .5.2.5.5v2c0 .3-.2.5-.5.5s-.5-.2-.5-.5v-2c0-.3.2-.5.5-.5zm0 6c-4.4 0-8 3.6-8 8h2c0-3.3 2.7-6 6-6s6 2.7 6 6h2c0-4.4-3.6-8-8-8z"
-                          clipPath={`url(#clip-${i}-${testimonial.name})`}
-                        />
-                      </g>
-                    ) : (
-                      // Empty Om
-                      <path
-                        className="text-gray-300 dark:text-gray-600"
-                        fill="currentColor"
-                        d="M12 2c-.5 0-1 .2-1.3.6-.3-.4-.8-.6-1.3-.6-1 0-1.7.8-1.7 1.7 0 .7.4 1.2 1 1.5-.6.3-1 .8-1 1.5 0 1 .8 1.7 1.7 1.7.5 0 1-.2 1.3-.6.3.4.8.6 1.3.6s1-.2 1.3-.6c.3.4.8.6 1.3.6 1 0 1.7-.8 1.7-1.7 0-.7-.4-1.2-1-1.5.6-.3 1-.8 1-1.5 0-1-.8-1.7-1.7-1.7-.5 0-1 .2-1.3.6-.3-.4-.8-.6-1.3-.6zm0 1.5c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm5.2 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 2c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm-2.6 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zm5.2 0c.4 0 .7.3.7.7s-.3.7-.7.7-.7-.3-.7-.7.3-.7.7-.7zM12 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2s2-.9 2-2v-2c0-1.1-.9-2-2-2zm0 1.5c.3 0 .5.2.5.5v2c0 .3-.2.5-.5.5s-.5-.2-.5-.5v-2c0-.3.2-.5.5-.5zm0 6c-4.4 0-8 3.6-8 8h2c0-3.3 2.7-6 6-6s6 2.7 6 6h2c0-4.4-3.6-8-8-8z"
-                      />
-                    )}
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      fill={ratingDiff > 0 ? 'currentColor' : 'none'}
+                    />
                   </svg>
                 );
               })}
             </div>
-            <p className="text-gray-700 dark:text-gray-300 italic text-sm leading-relaxed">
+            <p className="text-gray-700 dark:text-gray-300 italic text-sm leading-relaxed text-center">
+              "{testimonial.text}"
+            </p>
+          </div>
+        </div>
+      ))}
+
+      {/* Duplicate testimonials for seamless loop */}
+      {testimonials.map((testimonial, index) => (
+        <div
+          key={`testimonial-duplicate-${index}`}
+          className="flex-shrink-0 w-[300px] group"
+        >
+          {/* Same content as above */}
+          <div className="relative w-24 h-24 mx-auto mb-6 transform transition-transform duration-500 group-hover:scale-110">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 animate-spin-slow opacity-75 blur-md" />
+            <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl">
+              <Image
+                src={testimonial.image}
+                alt={testimonial.name}
+                fill
+                sizes="96px"
+                className="object-cover"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <h3 className="font-semibold text-lg text-center text-gray-900 dark:text-white">
+              {testimonial.name}
+            </h3>
+            <div className="text-center space-y-1">
+              <p className="text-sm font-medium text-teal-600 dark:text-teal-400">
+                {testimonial.designation}
+              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                {testimonial.location}
+              </p>
+            </div>
+            <div className="flex justify-center gap-1">
+              {[...Array(5)].map((_, i) => {
+                const ratingDiff = testimonial.rating - i;
+                return (
+                  <svg
+                    key={i}
+                    className={`w-5 h-5 ${
+                      ratingDiff >= 1 
+                        ? 'text-emerald-500' 
+                        : ratingDiff > 0
+                        ? 'text-emerald-500' 
+                        : 'text-gray-300 dark:text-gray-600'
+                    }`}
+                    viewBox="0 0 24 24"
+                    fill={ratingDiff > 0 && ratingDiff < 1 ? 'currentColor' : 'none'}
+                  >
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      fill={ratingDiff > 0 ? 'currentColor' : 'none'}
+                    />
+                  </svg>
+                );
+              })}
+            </div>
+            <p className="text-gray-700 dark:text-gray-300 italic text-sm leading-relaxed text-center">
               "{testimonial.text}"
             </p>
           </div>
@@ -205,6 +303,7 @@ function TestimonialCarousel({ testimonials }: { testimonials: any[] }) {
     </div>
   );
 }
+
 
 export default function Home() {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);

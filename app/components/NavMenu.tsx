@@ -26,10 +26,18 @@ const menuItems = [
   { label: 'Gallery', href: '#gallery', isSection: true },
   { label: 'Testimonials', href: '#testimonials', isSection: true },
   { 
-    label: 'Store ✨', 
+    label: (
+      <span className="flex items-center gap-1">
+        Store
+        <span className="text-amber-400">✨</span>
+      </span>
+    ), 
     href: '#store', 
     isSection: true,
-    isStore: true
+    isStore: true,
+    className: `bg-gradient-to-r from-teal-950 to-emerald-950 text-amber-300 hover:text-amber-200 
+      border border-amber-400/20 hover:border-amber-400/40 shadow-lg hover:shadow-amber-400/5
+      px-4 -mx-1 rounded-lg transition-all duration-300`
   },
   { label: 'Contact', href: '#contact', isSection: true },
 ];
@@ -170,12 +178,13 @@ function NavMenu() {
                   key={item.href}
                   onClick={() => handleNavigation(item)}
                   className={`relative px-3 py-2 text-sm font-medium transition-all duration-300
+                    ${item.className || ''}
                     ${item.isStore ? `
-                      bg-gradient-to-r from-teal-500 to-emerald-500 
-                      text-white rounded-lg shadow-[0_4px_0_0_#0d9488] 
-                      hover:shadow-[0_2px_0_0_#0d9488] hover:translate-y-0.5
-                      active:shadow-none active:translate-y-1
-                      px-4 -mx-1
+                      bg-gradient-to-r from-teal-950 to-emerald-950 
+                      text-amber-300 hover:text-amber-200
+                      border border-amber-400/20 hover:border-amber-400/40
+                      shadow-lg hover:shadow-amber-400/5
+                      px-4 -mx-1 rounded-lg
                     ` : `
                       text-gray-800 hover:text-teal-600 dark:text-gray-100 dark:hover:text-teal-400
                       after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full 
