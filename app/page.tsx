@@ -594,15 +594,6 @@ export default function Home() {
             </a>
 
             {/* Quick Links */}
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-teal-300">
-              <Link href="/careers" className="hover:text-white transition-colors">
-                Careers
-              </Link>
-              <span>•</span>
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <span>•</span>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            </div>
 
             {/* Social Links */}
             <div className="flex items-center space-x-6">
