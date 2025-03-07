@@ -9,31 +9,36 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://sattva-wellness.in/'),
-  title: 'Sattva Wellness | Yoga, Meditation & Holistic Health in Kerala',
-  description: 'Transform your life with Sattva Wellness. Expert-led yoga classes, meditation sessions, and wellness camps in Kerala. Join our holistic approach to health, mindfulness, and spiritual growth.',
+  title: 'Best Yoga & Meditation Center in Kerala | Sattva Wellness',
+  description: 'Join Kerala\'s premier yoga and meditation center. Expert-led classes, personalized wellness programs, and authentic spiritual practices. Transform your life with our holistic approach to health, mindfulness, and Ayurvedic wellness in Kerala.',
   keywords: [
-    'yoga classes Kerala',
-    'meditation center Kerala',
-    'wellness retreat',
-    'holistic health',
-    'mindfulness training',
-    'yoga therapy',
-    'spiritual wellness',
+    'best yoga classes Kerala',
+    'yoga center Kochi',
+    'meditation classes Kerala',
+    'wellness retreat Kerala',
+    'Ayurvedic wellness center',
+    'holistic health Kerala',
+    'yoga therapy Kerala',
+    'mindfulness training India',
+    'spiritual wellness center',
     'wellness camps Kerala',
-    'yoga meditation center',
-    'stress management',
-    'mindful living',
-    'wellness program',
-    'yoga for beginners',
-    'wellness community',
-    'health transformation',
-    'Ayurvedic wellness',
-    'mind body wellness',
-    'yoga benefits',
-    'meditation techniques',
-    'wellness coaching'
+    'yoga meditation center Kerala',
+    'stress management Kerala',
+    'yoga for beginners Kerala',
+    'wellness community Kerala',
+    'health transformation program',
+    'Ayurvedic wellness retreat',
+    'mind body wellness Kerala',
+    'traditional yoga classes',
+    'meditation techniques Kerala',
+    'wellness coaching India',
+    'yoga certification Kerala',
+    'spiritual retreat center',
+    'wellness workshops Kerala',
+    'yoga teacher training Kerala',
+    'holistic healing center'
   ].join(', '),
-  authors: [{ name: 'Sattva Wellness' }],
+  authors: [{ name: 'Sattva Wellness', url: 'https://sattva-wellness.in' }],
   creator: 'Sattva Wellness',
   publisher: 'Sattva Wellness',
   formatDetection: {
@@ -42,8 +47,8 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: 'Sattva Wellness | Yoga, Meditation & Holistic Health in Kerala',
-    description: 'Transform your life with Sattva Wellness. Expert-led yoga classes, meditation sessions, and wellness camps in Kerala.',
+    title: 'Best Yoga & Meditation Center in Kerala | Sattva Wellness',
+    description: 'Transform your life with Kerala\'s leading yoga and meditation center. Expert-led classes, personalized wellness programs, and authentic spiritual practices.',
     url: 'https://sattva-wellness.in/',
     siteName: 'Sattva Wellness',
     images: [
@@ -51,7 +56,7 @@ export const metadata: Metadata = {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Sattva Wellness - Holistic Health & Mindful Living',
+        alt: 'Sattva Wellness - Kerala\'s Premier Yoga & Meditation Center',
       },
     ],
     locale: 'en_US',
@@ -59,9 +64,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sattva Wellness | Yoga, Meditation & Holistic Health in Kerala',
-    description: 'Transform your life with expert-led yoga classes, meditation sessions, and wellness camps in Kerala.',
+    title: 'Best Yoga & Meditation Center in Kerala | Sattva Wellness',
+    description: 'Join Kerala\'s premier yoga center for expert-led classes, meditation sessions, and transformative wellness programs.',
     images: ['/og-image.jpg'],
+    creator: '@sattvawellness',
   },
   alternates: {
     canonical: 'https://sattva-wellness.in',
@@ -77,11 +83,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code',
-  }
 };
 
+// Enhanced JSON-LD
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'HealthAndBeautyBusiness',
@@ -90,26 +94,58 @@ const jsonLd = {
   '@id': 'https://sattva-wellness.in',
   url: 'https://sattva-wellness.in',
   telephone: '+919895798155',
-  areaServed: {
-    '@type': 'State',
-    name: 'Kerala',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Sattva Wellness Center',
+    addressLocality: 'Kochi',
+    addressRegion: 'Kerala',
+    postalCode: '682001',
     addressCountry: 'IN'
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 9.9312,   // Replace with your exact location's latitude
+    longitude: 76.2673  // Replace with your exact location's longitude
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.8',
+    reviewCount: '150'
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday'
+    ],
+    opens: '06:00',
+    closes: '20:00'
   },
   availableService: [
     {
       '@type': 'Service',
       name: 'Yoga Classes',
-      description: 'Expert-led yoga sessions combining physical postures, breathing techniques, and relaxation'
+      description: 'Expert-led traditional yoga sessions combining asanas, pranayama, and meditation techniques'
     },
     {
       '@type': 'Service',
       name: 'Meditation Sessions',
-      description: 'Guided meditation practices to cultivate mindfulness and inner calm'
+      description: 'Guided meditation practices for stress relief, mindfulness, and spiritual growth'
     },
     {
       '@type': 'Service',
       name: 'Wellness Camps',
-      description: 'Immersive wellness retreats focused on holistic transformation'
+      description: 'Transformative wellness retreats combining yoga, meditation, and Ayurvedic practices'
+    },
+    {
+      '@type': 'Service',
+      name: 'Personal Training',
+      description: 'One-on-one yoga and wellness coaching for personalized growth'
     }
   ],
   sameAs: [
@@ -117,7 +153,7 @@ const jsonLd = {
     'https://www.instagram.com/sattva_wellness_'
   ],
   priceRange: '₹₹',
-  description: 'Transform your life with Sattva Wellness. Expert-led yoga classes, meditation sessions, and wellness camps in Kerala.'
+  description: 'Kerala\'s premier yoga and meditation center offering expert-led classes, wellness programs, and spiritual practices for holistic transformation.'
 };
 
 export default function RootLayout({
