@@ -1,8 +1,15 @@
 User-agent: *
 Allow: /
 
+# Optimize crawling
+Crawl-delay: 5
+
+# Important pages
+Allow: /classes
+Allow: /programs
+Allow: /about
+Allow: /contact
+Allow: /store
+
 # Sitemaps
 Sitemap: https://sattva-wellness.in/sitemap.xml
-
-# Crawl-delay
-Crawl-delay: 10 
