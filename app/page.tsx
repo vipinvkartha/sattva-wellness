@@ -12,6 +12,13 @@ import StoreSection from "@/app/components/StoreSection";
 import Image from "next/image";
 import Link from "next/link";
 
+// Temporary Advertisement Images
+const adImages = [
+  { src: "/ads/1.JPG", alt: "Workshop Ad 1" },
+  { src: "/ads/2.JPG", alt: "Workshop Ad 2" },
+  { src: "/ads/3.JPG", alt: "Workshop Ad 3" },
+];
+
 interface FeatureCardProps {
   icon: ReactNode;
   title: string;
@@ -338,8 +345,134 @@ export default function Home() {
     }
   };
 
+  // --- AD BANNER MODAL STATE ---
+  const [showAdBanner, setShowAdBanner] = useState(false);
+  const [adIndex, setAdIndex] = useState(0);
+  const adIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [adEverClosed, setAdEverClosed] = useState(false); // Track if ad was closed
+
+  // Show modal 2 seconds after load
+  useEffect(() => {
+    const timer = setTimeout(() => setShowAdBanner(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Carousel auto-advance
+  useEffect(() => {
+    if (!showAdBanner) return;
+    adIntervalRef.current = setInterval(() => {
+      setAdIndex((prev) => (prev + 1) % adImages.length);
+    }, 3500);
+    return () => {
+      if (adIntervalRef.current) clearInterval(adIntervalRef.current);
+    };
+  }, [showAdBanner]);
+  // --- END AD BANNER MODAL STATE ---
+
+  // Handler for closing ad
+  const handleCloseAd = () => {
+    setShowAdBanner(false);
+    setAdEverClosed(true);
+  };
+
+  // Handler for reopening ad
+  const handleReopenAd = () => {
+    setShowAdBanner(true);
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-teal-50 via-emerald-50/50 to-teal-50 dark:from-teal-950 dark:via-emerald-950/50 dark:to-teal-950">
+      {/* AD BANNER MODAL OVERLAY - Remove after workshop */}
+      {showAdBanner && (
+        <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
+          <div className="relative w-full max-w-2xl h-80 sm:h-[28rem] bg-gradient-to-br from-amber-100 via-amber-200 to-amber-100 dark:from-amber-900 dark:via-amber-800 dark:to-amber-900 rounded-2xl shadow-2xl flex items-center overflow-hidden animate-fade-in-up">
+            {/* Carousel Images */}
+            {adImages.map((ad, idx) => (
+              <div
+                key={idx}
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${adIndex === idx ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+                style={{ pointerEvents: adIndex === idx ? 'auto' : 'none' }}
+              >
+                <a href="#contact" title="Workshop Details" className="w-full h-full flex items-center justify-center bg-neutral-200 dark:bg-neutral-900 rounded-2xl">
+                  <Image
+                    src={ad.src}
+                    alt={ad.alt}
+                    fill
+                    className="object-contain object-center w-full h-full rounded-2xl"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority={idx === 0}
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-900/80 to-transparent p-3 text-center text-white text-lg font-bold tracking-wide shadow-lg rounded-b-2xl">
+                    Workshop Advertisement
+                  </div>
+                </a>
+              </div>
+            ))}
+            {/* Carousel Controls */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+              {adImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  className={`w-3 h-3 rounded-full border-2 border-white bg-amber-300 transition-all duration-300 ${adIndex === idx ? 'scale-125 bg-amber-500' : 'opacity-60'}`}
+                  onClick={() => setAdIndex(idx)}
+                  aria-label={`Show ad ${idx + 1}`}
+                />
+              ))}
+            </div>
+            {/* Close Button */}
+            <button
+              onClick={handleCloseAd}
+              className="absolute top-3 right-3 bg-white/80 hover:bg-white text-amber-900 rounded-full p-1 shadow-md transition-colors z-20"
+              aria-label="Close advertisement banner"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
+      {/* END AD BANNER MODAL OVERLAY */}
+
+      {/* FLOATING REOPEN BUTTON (desktop and mobile FAB) */}
+      {!showAdBanner && adEverClosed && (
+        <>
+          {/* Desktop version */}
+          <div className="hidden md:block fixed left-4 top-1/2 -translate-y-1/2 z-[250]" aria-hidden="true">
+            <div className="group relative flex items-center">
+              <button
+                onClick={handleReopenAd}
+                className="w-12 h-12 rounded-full bg-amber-500 hover:bg-amber-600 shadow-xl flex items-center justify-center transition-all duration-300 border-4 border-white/80 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                aria-label="Show Workshop Ad"
+              >
+                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2.2" fill="none" />
+                  <path d="M12 8v8M8 12h8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                </svg>
+              </button>
+              {/* Tooltip */}
+              <span className="absolute left-16 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 bg-gray-900 text-white text-xs rounded px-3 py-1 shadow-lg transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                Show Workshop Ad
+              </span>
+            </div>
+          </div>
+          {/* Mobile FAB: ensure flex, pointer-events, and z-index for visibility */}
+          <div className="flex md:hidden fixed left-4 bottom-24 z-[500] pointer-events-auto">
+            <button
+              onClick={handleReopenAd}
+              className="w-10 h-10 rounded-full bg-amber-500 hover:bg-amber-600 shadow-xl flex items-center justify-center transition-all duration-300 border-2 border-white/80 active:scale-110 focus:outline-none focus:ring-2 focus:ring-amber-400 pointer-events-auto"
+              aria-label="Show Workshop Ad"
+              style={{ zIndex: 501 }}
+            >
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2.2" fill="none" />
+                <path d="M12 8v8M8 12h8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
+        </>
+      )}
+      {/* END FLOATING REOPEN BUTTON */}
       <NavMenu />
 
       {/* Hero Section */}
