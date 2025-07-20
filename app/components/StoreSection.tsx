@@ -3,26 +3,40 @@ import Image from 'next/image';
 export default function StoreSection() {
   const categories = [
     {
-      title: "Healing Bracelets",
-      description: "Rudraksha & Crystal energy companions",
-      image: "/store/healing-bracelets.jpg",
-      alt: "Collection of healing bracelets",
-      link: "https://vibha.store.link/category/hand-chain"
+      title: "Rudraksham",
+      description: "Rudraksha beads, malas, and bracelets",
+      image: "/store/rudraksha.jpeg",
+      alt: "Rudraksha collection",
+      link: "https://vibha.store.link/category/rudraksham"
     },
     {
-      title: "Sacred Chains",
-      description: "Spiritual & healing necklaces",
-      image: "/store/sacred-chains.jpg",
-      alt: "Beautiful sacred chains collection",
-      link: "https://vibha.store.link/category/chain"
+      title: "Stone",
+      description: "Healing stone bracelets and chains",
+      image: "/store/stone.jpeg",
+      alt: "Stone collection",
+      link: "https://vibha.store.link/category/stone"
     },
     {
-      title: "Special Combos",
-      description: "Enhanced spiritual practice sets",
-      image: "/store/special-combos.jpg",
-      alt: "Special wellness product combinations",
-      link: "https://vibha.store.link/category/combos"
-    }
+      title: "Karungali",
+      description: "Karungali chains and bracelets",
+      image: "/store/karungali.jpeg",
+      alt: "Karungali collection",
+      link: "https://vibha.store.link/category/karungali"
+    },
+    {
+      title: "Redsandal",
+      description: "Red sandalwood chains and bracelets",
+      image: "/store/redsandal.jpeg",
+      alt: "Redsandal collection",
+      link: "https://vibha.store.link/category/redsandal"
+    },
+    {
+      title: "Thulasi",
+      description: "Thulasi malas and bracelets",
+      image: "/store/thulasi.jpeg",
+      alt: "Thulasi collection",
+      link: "https://vibha.store.link/category/thulasi"
+    },
   ];
 
   const handleCategoryClick = (link: string) => {
