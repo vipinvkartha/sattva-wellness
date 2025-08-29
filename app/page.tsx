@@ -382,58 +382,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-teal-50 via-emerald-50/50 to-teal-50 dark:from-teal-950 dark:via-emerald-950/50 dark:to-teal-950">
-      {/* AD BANNER MODAL OVERLAY - Remove after workshop */}
-      {showAdBanner && (
-        <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
-          <div className="relative w-full max-w-2xl h-80 sm:h-[28rem] bg-gradient-to-br from-amber-100 via-amber-200 to-amber-100 dark:from-amber-900 dark:via-amber-800 dark:to-amber-900 rounded-2xl shadow-2xl flex items-center overflow-hidden animate-fade-in-up">
-            {/* Carousel Images */}
-            {adImages.map((ad, idx) => (
-              <div
-                key={idx}
-                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${adIndex === idx ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-                style={{ pointerEvents: adIndex === idx ? 'auto' : 'none' }}
-              >
-                <a href="#contact" title="Workshop Details" className="w-full h-full flex items-center justify-center bg-neutral-200 dark:bg-neutral-900 rounded-2xl">
-                  <Image
-                    src={ad.src}
-                    alt={ad.alt}
-                    fill
-                    className="object-contain object-center w-full h-full rounded-2xl"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    priority={idx === 0}
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-amber-900/80 to-transparent p-3 text-center text-white text-lg font-bold tracking-wide shadow-lg rounded-b-2xl">
-                    Workshop Advertisement
-                  </div>
-                </a>
-              </div>
-            ))}
-            {/* Carousel Controls */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-              {adImages.map((_, idx) => (
-                <button
-                  key={idx}
-                  className={`w-3 h-3 rounded-full border-2 border-white bg-amber-300 transition-all duration-300 ${adIndex === idx ? 'scale-125 bg-amber-500' : 'opacity-60'}`}
-                  onClick={() => setAdIndex(idx)}
-                  aria-label={`Show ad ${idx + 1}`}
-                />
-              ))}
-            </div>
-            {/* Close Button */}
-            <button
-              onClick={handleCloseAd}
-              className="absolute top-3 right-3 bg-white/80 hover:bg-white text-amber-900 rounded-full p-1 shadow-md transition-colors z-20"
-              aria-label="Close advertisement banner"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      )}
-      {/* END AD BANNER MODAL OVERLAY */}
-
       {/* FLOATING REOPEN BUTTON (desktop and mobile FAB) */}
       {!showAdBanner && adEverClosed && (
         <>
